@@ -1,0 +1,72 @@
+.sidebar {
+    width: 300px;
+    margin-left : 20px;
+    margin-top : 20px;
+    border-radius: 15px;
+    height: 600px;
+    font-size : 20px;
+    background-color: #E4E4E8;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.btn-container{
+    display: flex;
+}
+.btns{
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+.dot {
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.menu {
+    margin: 20px 0 30px 10px;
+}
+
+.btns .grn{
+    background-color: #00C7BE;
+}
+.btns .pnk{
+    background-color: #FF1AD9;
+}
+.btns .ylw{
+    background-color: #FFCC00;
+}
+.btns .blu{
+    background-color: #007AFF;
+}
+.btns .lgrn{
+    background-color: #34C759;
+}
+.btns-2 .red{
+    background-color: red;
+}
+
+a{
+    text-decoration: none;
+    display: flex;
+    color: black;
+    padding: 9px;
+    border-radius: 10px;
+    margin-bottom : 10px;
+}
+a:hover {
+    text-decoration: none;
+    cursor:pointer;
+    background-color: #f0f0f0;
+}
+
+.btns-2{
+    display: flex;
+    margin-top: 230px;
+    flex-direction: column;
+    height: 200px;
+}

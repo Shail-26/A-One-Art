@@ -46,6 +46,7 @@ const Register = () => {
   };
 
   return (
+    <div className="container">
     <div className="card">
       <div className="register-container">
         <h2>Register</h2>
@@ -92,7 +93,7 @@ const Register = () => {
         </p>
       </div>
     </div>
-
+  </div>
   );
 };
 
