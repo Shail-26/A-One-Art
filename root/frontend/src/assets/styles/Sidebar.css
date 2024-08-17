@@ -50,7 +50,7 @@
     background-color: red;
 }
 
-a{
+.sidebar a{
     text-decoration: none;
     display: flex;
     color: black;
@@ -58,7 +58,7 @@ a{
     border-radius: 10px;
     margin-bottom : 10px;
 }
-a:hover {
+.sidebar a:hover {
     text-decoration: none;
     cursor:pointer;
     background-color: #f0f0f0;

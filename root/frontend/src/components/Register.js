@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import '../assets/styles/Register.css';
 import '../assets/styles/forall.css';
+import '../assets/styles/Register.css';
 
 const Register = () => {
   const [credentials, setCredentials] = useState({
@@ -47,53 +47,53 @@ const Register = () => {
 
   return (
     <div className="container">
-    <div className="card">
-      <div className="register-container">
-        <h2>Register</h2>
-        <form onSubmit={handleSubmit} className="register-form">
-          {/* <div className="form-group">
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={form.username}
-              onChange={onChange}
-              required
-            />
-          </div> */}
-          <div className="form-group">
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" value={credentials.name} onChange={onChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" value={credentials.email} onChange={onChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" name="password" value={credentials.password} onChange={onChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Confirm Password:</label>
-            <input type="text" id="cpassword" name="cpassword" value={credentials.cpassword} onChange={onChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="mobile">Mobile:</label>
-            <input type="tel" id="mobile" name="mobile" value={credentials.mobile} onChange={onChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="location">Location:</label>
-            <input type="text" id="location" name="location" value={credentials.location} onChange={onChange} required/>
-          </div>
-          <button type="submit">Register</button>
-        </form>
-        <p>
-          Already have an account? <a href="/Login">&nbsp;Login</a>
-        </p>
+      <div className="card">
+        <div className="register-container">
+          <h2>Register</h2>
+          <form onSubmit={handleSubmit} className="register-form">
+            {/* <div className="form-group">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={form.username}
+                onChange={onChange}
+                required
+              />
+            </div> */}
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input type="text" id="name" name="name" value={credentials.name} onChange={onChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" name="email" value={credentials.email} onChange={onChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password:</label>
+              <input type="password" id="password" name="password" value={credentials.password} onChange={onChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Confirm Password:</label>
+              <input type="text" id="cpassword" name="cpassword" value={credentials.cpassword} onChange={onChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="mobile">Mobile:</label>
+              <input type="tel" id="mobile" name="mobile" value={credentials.mobile} onChange={onChange} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="location">Location:</label>
+              <input type="text" id="location" name="location" value={credentials.location} onChange={onChange} required/>
+            </div>
+            <button type="submit">Register</button>
+          </form>
+          <p>
+            Already have an account? <a href="/Login">&nbsp;Login</a>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 

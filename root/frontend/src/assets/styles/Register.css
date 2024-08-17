@@ -1,5 +1,4 @@
 .container{
-font-family: Arial, sans-serif; 
   background-color: rgb(92, 88, 89);
   margin: 0;
   padding: 0;
@@ -7,7 +6,7 @@ font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('https://i.pinimg.com/564x/e2/36/c8/e236c86d6867e73e1b2888416ea9a805.jpg');
+  background-image: url('https://i.pinimg.com/564x/9a/77/5f/9a775fdb5cd7c5b5c900688fd116df02.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -91,7 +90,7 @@ font-family: Arial, sans-serif;
     overflow: hidden;
   }
   
-  .card::before,
+   .card::before,
   .card::after {
     position: absolute;
     width: 100%;
@@ -126,7 +125,7 @@ font-family: Arial, sans-serif;
     width: 16%;
     height: 16%;
     transition: all 0.5s;
-  }
+  } 
   
   /* .card:hover::after {
     content: "Registration";

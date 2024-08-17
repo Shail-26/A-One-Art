@@ -1,4 +1,4 @@
-/* .card {
+ .card {
     position: relative;
     width: 100%;
     max-width: 400px;
@@ -90,8 +90,8 @@
   }
   
   button {
-    width: 100%; /* Set the width to 100% */
-    /* padding: 10px 15px;
+    width: 100%;  
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     background-color: #007BFF;
@@ -117,9 +117,9 @@
   a:hover {
     text-decoration: underline;
   }
-   */ 
+   
 
-   a {
+  a {
     color: #007BFF;
     text-decoration: none;
   }
