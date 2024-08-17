@@ -17,7 +17,7 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div className="btns-2">
-                    <a href="/"><span className="dot red"></span>Studio Services</a>
+                    <a href="/"><span className="dot red"></span>Logout</a>
                 </div>
             </div>
             
