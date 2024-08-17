@@ -9,15 +9,15 @@ const Sidebar = () => {
             <div className="btn-outer-container">
                 <div className="btn-container">
                     <div className="btns">
-                        <a><span class="dot grn"></span>Dashboard</a>
-                        <a><span class="dot pnk"></span>Customer Details</a>
-                        <a><span class="dot ylw"></span>Order Management</a>
-                        <a><span class="dot blu"></span>Product Management</a>
-                        <a><span class="dot lgrn"></span>Studio Services</a>
+                        <a href="/"><span className="dot grn"></span>Dashboard</a>
+                        <a href="/"><span className="dot pnk"></span>Customer Details</a>
+                        <a href="/"><span className="dot ylw"></span>Order Management</a>
+                        <a href="/"><span className="dot blu"></span>Product Management</a>
+                        <a href="/"><span className="dot lgrn"></span>Studio Services</a>
                     </div>
                 </div>
                 <div className="btns-2">
-                    <a><span class="dot red"></span>Studio Services</a>
+                    <a href="/"><span className="dot red"></span>Studio Services</a>
                 </div>
             </div>
             

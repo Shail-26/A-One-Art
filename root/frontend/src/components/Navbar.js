@@ -1,4 +1,3 @@
-// src/Navbar.js
 import React from 'react';
 import '../assets/styles/Navbar.css';
 import '../assets/styles/forall.css';
@@ -11,7 +10,7 @@ const Navbar = () => {
         <img src={logo} alt="Logo" />
       </div>
       <ul className="nav-links">
-        <li><a href="/">Home</a></li>
+        <li><a href='/'>Home</a></li>
         <li><a href="/about">Ourwork</a></li>
         <li><a href="/services">Products</a></li>
         <li><a href="/contact">Order</a></li>
