@@ -1,0 +1,93 @@
+/* src/Navbar.css */
+.body{
+  margin: 0;
+  padding: 0;
+  padding-top: 60%;
+}
+.navbar {
+  position: fixed;
+  top: 8px;
+  left: 13px;
+  background-color: transparent;  /* Background color of the navbar */
+  z-index: 1000;           /* Ensures the navbar stays on top of other elements */
+  display: flex;
+  justify-content: space-around;  /* Adjusts the layout of the items in the navbar */
+  padding: 10px 20px;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  Adds a slight shadow for depth */
+  width: 1470px;
+}
+  
+  .navbar .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    background-color: rgb(228, 232, 254);
+    padding: 10px 15px 10px 15px;
+    padding-right: 29px;
+    border-radius: 30px;
+  }
+  
+  .nav-links li {
+    margin-left: 20px;
+  }
+  
+  .nav-links a {
+    color: #090808;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3 ease;
+  }
+  
+  .nav-links a:hover {
+    color: #f42d80;
+  }
+  
+  .logo img {
+    height: 60px; /* Adjust the height as needed */
+    width: 90px;  /* Keep the aspect ratio */
+  }
+
+  .btn-main-class{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-class{
+    background-color: rgb(228, 232, 254);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 190px;
+    border-radius: 40px;
+    height: 40px;
+  }
+
+  .sign-in-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f42d80;
+    width: 90px;
+    border-radius: 20px 5px 5px 20px;
+    margin: 0px;
+    height: 35px;
+  }
+
+  .sign-up-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 173, 239);
+    width: 90px;
+    border-radius: 5px 20px 20px 5px;
+    margin-left: 2px;
+    height: 35px;
+  }
