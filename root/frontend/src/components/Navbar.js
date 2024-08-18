@@ -19,8 +19,8 @@ const Navbar = () => {
       </ul>
       <div className='btn-main-class'>
         <div className='button-class'>
-          <button className='sign-in-btn'>Sign In</button>
-          <button className='sign-up-btn'>Sign Up</button>
+          <button className='sign-in-btn nav-btn'>Sign In</button>
+          <button className='sign-up-btn nav-btn'>Sign Up</button>
         </div>
       </div>
 

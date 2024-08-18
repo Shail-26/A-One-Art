@@ -1,14 +1,13 @@
 .sidebar {
-    width: 300px;
-    margin-left : 20px;
-    margin-top : 20px;
+    width: 310px;
     border-radius: 15px;
     height: 600px;
     font-size : 20px;
-    background-color: #E4E4E8;
+    background-color: rgb(228, 232, 254);;
     padding: 20px;
     box-sizing: border-box;
     overflow: hidden;
+    border : 2px solid rgba(115, 117, 130, 0.479);
 }
 .btn-container{
     display: flex;
@@ -17,6 +16,31 @@
     display: flex;
     flex-direction: column;
     height: 200px;
+}
+
+.btns .agrn:hover{
+    color:#00C7BE;
+    font-weight : bold;
+}
+.btns .apnk:hover{
+    font-weight : bold;
+    color: #FF1AD9;
+}
+.btns .aylw:hover{
+    font-weight : bold;
+    color: #FFCC00;
+}
+.btns .ablu:hover{
+    font-weight : bold;
+    color: #007AFF;
+}
+.btns .algrn:hover{
+    font-weight : bold;
+    color: #34C759;
+}
+.btns-2 .ared:hover{
+    font-weight : bold;
+    color: red;
 }
 .dot {
     margin-right: 10px;
@@ -61,7 +85,6 @@
 .sidebar a:hover {
     text-decoration: none;
     cursor:pointer;
-    background-color: #f0f0f0;
 }
 
 .btns-2{

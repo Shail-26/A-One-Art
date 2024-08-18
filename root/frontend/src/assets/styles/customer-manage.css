@@ -1,0 +1,18 @@
+.main-content {
+    display: flex; /* Enables flexbox layout */
+    flex-direction: row; /* Aligns children in a row (horizontally) */
+    align-items: flex-start; /* Aligns items at the start of the container */
+    padding: 20px;
+}
+
+
+.customer_manage {
+    flex: 1; /* Takes up remaining space next to the sidebar */
+    margin-left: 20px; /* Space between the sidebar and customer_manage */
+    padding: 20px;
+    background-color: #fff; /* Adjust background as needed */
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 600px; /* Match the height of the sidebar */
+    box-sizing: border-box;
+}
