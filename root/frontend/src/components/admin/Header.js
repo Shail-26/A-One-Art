@@ -1,12 +1,24 @@
 import React from 'react';
-import '../../assets/styles/Header.css'; 
+import '../../assets/styles/forall.css';
+import logo from '../../assets/images/Logo img.png';
 
-const Header = () => {
+const Navbar = () => {
     return (
-        <div className="header">
-            fdsfsd
-        </div>
+        <nav className="navbar admin">
+            <div className="logo">
+                <img src={logo} alt="Logo" />
+            </div>
+            <ul className="nav-links">
+                <p>Hello Owner </p>
+            </ul>
+            <div className='btn-main-class'>
+                <div className='button-class'>
+                    <button className='sign-in-btn admin-logout nav-btn'>Logout</button>
+                </div>
+            </div>
+
+        </nav>
     );
 };
 
-export default Header;
+export default Navbar;
