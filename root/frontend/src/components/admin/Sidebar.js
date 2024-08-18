@@ -9,11 +9,11 @@ const Sidebar = () => {
             <div className="btn-outer-container">
                 <div className="btn-container">
                     <div className="btns">
-                        <a href="/admin/" className="agrn"><span className="dot grn"></span>Dashboard</a>
-                        <a href="/admin/" className="apnk"><span className="dot pnk"></span>Customer Details</a>
-                        <a href="/admin/" className="aylw"><span className="dot ylw"></span>Order Management</a>
-                        <a href="/admin/" className="ablu"><span className="dot blu"></span>Product Management</a>
-                        <a href="/admin/" className="algrn"><span className="dot lgrn"></span>Studio Services</a>
+                        <a href="/admin/home" className="agrn"><span className="dot grn"></span>Dashboard</a>
+                        <a href="/admin/customer-details" className="apnk"><span className="dot pnk"></span>Customer Details</a>
+                        <a href="/admin/home" className="aylw"><span className="dot ylw"></span>Order Management</a>
+                        <a href="/admin/home" className="ablu"><span className="dot blu"></span>Product Management</a>
+                        <a href="/admin/home" className="algrn"><span className="dot lgrn"></span>Studio Services</a>
                     </div>
                 </div>
                 <div className="btns-2">

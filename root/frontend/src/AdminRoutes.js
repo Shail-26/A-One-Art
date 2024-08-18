@@ -11,6 +11,14 @@ const AdminRoutes = () => {
                     <Header />
                     <div className="main-content">
                         <Sidebar />
+                    </div>
+                </>
+            } />
+            <Route path="/customer-details" element={
+                <>
+                    <Header />
+                    <div className="main-content">
+                        <Sidebar />
                         <Customer_Manage className="customer_manage"/>
                     </div>
                 </>

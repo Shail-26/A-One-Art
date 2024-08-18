@@ -72,7 +72,7 @@ const Register = () => {
             </div>
             <div className="form-group">
               <label htmlFor="password">Password:</label>
-              <input type="password" id="password" name="password" value={credentials.password} onChange={onChange} required />
+              <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" value={credentials.password} onChange={onChange} required />
             </div>
             <div className="form-group">
               <label htmlFor="password">Confirm Password:</label>
@@ -80,7 +80,7 @@ const Register = () => {
             </div>
             <div className="form-group">
               <label htmlFor="mobile">Mobile:</label>
-              <input type="tel" id="mobile" name="mobile" value={credentials.mobile} onChange={onChange} required />
+              <input type="tel" id="mobile" name="mobile" pattern="[1-9]{1}[0-9]{9}" value={credentials.mobile} onChange={onChange} required />
             </div>
             <div className="form-group">
               <label htmlFor="location">Location:</label>
