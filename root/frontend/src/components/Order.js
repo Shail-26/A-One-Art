@@ -148,7 +148,7 @@ const EventForm = () => {
                         />
                     </div>
                     <div className="form-group">
-                        <button type="submit">Submit</button>
+                        <button className="order-btn" type="submit">Submit</button>
                     </div>
                     {estimatedPrice && (
                         <div className="form-group">
