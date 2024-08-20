@@ -97,18 +97,7 @@ const Product_Manage = () => {
             console.error('There was an error adding the product!', error);
         }
     };
-    
-    
 
-    const prod = [
-        { name: 'Lorem', price: 'xxx'},
-        { name: 'Lorem', price: 'xxx'},
-        { name: 'Lorem', price: 'xxx'},
-        { name: 'Lorem', price: 'xxx'},
-        { name: 'Lorem', price: 'xxx'},
-        { name: 'Lorem', price: 'xxx'},
-        { name: 'Lorem', price: 'xxx'},
-    ];
     return (
         <div className="product-manage-main-content">
             <div className="add-btn-cont">
@@ -142,7 +131,9 @@ const Product_Manage = () => {
             <div className="product-cards">
                 {showProd.map((prod, index) => (
                     <div key={index} className="product-card">
-                        <div className="product-image"></div>
+                        <div className='product-image'>
+                            <img className="product-img" alt={prod.name} src={`${host}/${prod.image}`}></img>
+                        </div>
                         <div className="product-details">
                             <p className="product-name">{prod.name}</p>
                             <p className="product-price">Rs. {prod.price}</p>
