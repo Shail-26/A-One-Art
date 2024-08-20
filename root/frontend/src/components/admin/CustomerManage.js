@@ -27,6 +27,35 @@ const Customer_Manage = () => {
         fetchCustomers();
         // eslint-disable-next-line 
     }, []);
+
+
+    const [showProd, setShowProd] = useState([]);
+    const fetchProducts = async () => {
+        try {
+            const response = await fetch(`${host}/api/admin/getallusers`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                }
+            });
+            if (!response.ok) {
+                const text = await response.text(); // Read the response as text
+                throw new Error(`Network response was not ok: ${text}`);
+            }
+            const data = await response.json();
+            setCustomers(data);
+        } catch (err) {
+            console.error('Error fetching customers:', err);
+        }
+    };
+    useEffect(() => {
+        fetchProducts();
+        // eslint-disable-next-line 
+    }, []);
+
+
+
     return (
         <div className="customer-manage-container">
             <div className="customer-details">

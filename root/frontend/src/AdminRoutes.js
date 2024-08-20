@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/admin/Header';
 import Sidebar from './components/admin/Sidebar';
-import Customer_Manage from './components/admin/Customer_Manage';
-import Product_Manage from './components/admin/Product_Manage';
+import Customer_Manage from './components/admin/CustomerManage';
+import Product_Manage from './components/admin/ProductManage';
 
 const AdminRoutes = () => {
     return (
