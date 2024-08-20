@@ -1,0 +1,112 @@
+
+/* Main content styling */
+.product-manage-main-content {
+    border-radius: 15px;
+    border : 2px solid rgba(115, 117, 130, 0.479);
+    padding: 20px;    
+    background-color: rgb(228, 232, 254);
+    height: 100%;
+    margin-left: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.add-btn-cont {
+    display : flex;
+    justify-content: center;
+}
+
+/* Add Product button styling */
+.add-product-btn {
+    font-family: "Inter", sans-serif, "Poppins";
+    background-color: #00aaff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.add-product-btn:hover {
+    background-color: #007acc;
+}
+
+/* Product card grid layout */
+.product-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusts automatically based on available space */
+    gap: 20px; /* Space between the grid items */
+    justify-content: center; /* Centers the items when there's extra space */
+}
+
+/* Product card styling */
+.product-card {
+    background-color: white;
+    min-width: 200px; 
+    max-width: 300px;
+    /* max-width: 300px; Set a maximum width for each product card */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    margin: 0 auto; /* Center the card within its grid cell */
+}
+
+/* Product image styling */
+.product-image {
+    height: 150px;
+    background-color: #e0e0e0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Product details styling */
+.product-details {
+    padding: 10px;
+}
+
+.product-name {
+    font-size: 18px;
+    margin: 10px 0 5px;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Product actions styling */
+.product-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.edit-btn, .delete-btn {
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: black;
+}
+
+.delete-btn {
+    background-color: #00c7be;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #ffca2c;
+}
+
+.delete-btn:hover {
+    background-color: #00b3a0;
+}
