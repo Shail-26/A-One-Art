@@ -42,9 +42,11 @@
     border: none;
     background-color: rgb(90, 141, 142); /* Input background */
     color: white;
+    cursor: pointer;
 }
 
 .contact-submit-btn{
+    width: 100%;
     padding: 10px 20px;
     border-radius: 20px;
     border: none;
@@ -55,5 +57,5 @@
 }
 
 .contact-submit-btn:hover {
-    background-color: #2907ae; /* Darker button color on hover */
+    background-color: rgb(24, 75, 75); /* Darker button color on hover */
 }
