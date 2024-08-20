@@ -11,7 +11,7 @@
   background-color: transparent;  /* Background color of the navbar */
   z-index: 1000;           /* Ensures the navbar stays on top of other elements */
   display: flex;
-  justify-content: space-around;  /* Adjusts the layout of the items in the navbar */
+  justify-content: space-between;  /* Adjusts the layout of the items in the navbar */
   padding: 10px 20px;
   /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  Adds a slight shadow for depth */
   width: 1470px;
@@ -34,6 +34,7 @@
     padding-right: 29px;
     border-radius: 30px;
     border: 2px solid rgba(115, 117, 130, 0.479);
+    /* margin-left: 80px; */
   }
   
   .nav-links li {
@@ -99,12 +100,12 @@
   }
 
   .sign-in-btn:hover{
-    background-color: #fa1c79;
+    background-color: rgb(45, 49, 144);
     font-weight: 500;
   }
 
   .sign-up-btn:hover {
-    background-color: rgb(0, 183, 255);
+    background-color: rgb(45, 49, 144);
     font-weight: 500;
   }
 

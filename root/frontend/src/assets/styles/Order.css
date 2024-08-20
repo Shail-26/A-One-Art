@@ -1,0 +1,89 @@
+.event-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: rgb(184, 212, 204);
+    border-radius: 10px; */
+    background-image: url('https://i.pinimg.com/564x/59/54/f3/5954f3190e8b83e1aab524e1830a2711.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+}
+
+.event-form {
+    width: 400px;
+    background-color: rgba(2, 172, 239, 0.597);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 105%;
+    padding: 10px;
+    padding-right: 50px;
+    border-radius: 5px;
+    /* border: 1px solid #ccc; */
+    border: none;
+    /* background-color: #d8c7c7; */
+    background-color: white;
+    color: black;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+}
+
+.date-range {
+    display: flex;
+    align-items: center;
+}
+
+.date-range input {
+    width: calc(50% - 10px);
+    margin-right: 10px;
+}
+
+.date-range input:last-child {
+    margin-right: 0;
+}
+
+.date-range span {
+    margin: 0 20px;
+    color: white;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(45, 49, 144);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(17, 19, 95);
+}
