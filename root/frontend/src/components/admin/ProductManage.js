@@ -42,6 +42,30 @@ const Product_Manage = () => {
         }));
     };
 
+    const [showProd, setShowProd] = useState([]);
+    const fetchProducts = async () => {
+        try {
+            const response = await fetch(`${host}/api/admin/getallproducts`, {
+                method: 'GET',
+                headers: {
+                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            setShowProd(data); // Update state with fetched products
+        } catch (error) {
+            console.error('There was an error fetching the products!', error);
+        }
+    }
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -68,12 +92,12 @@ const Product_Manage = () => {
             console.log('Product added:', result);
             closeModal();
             // Optionally, refresh the product list here
+            fetchProducts();
         } catch (error) {
             console.error('There was an error adding the product!', error);
         }
     };
     
-
     
 
     const prod = [
@@ -116,7 +140,7 @@ const Product_Manage = () => {
                 </div>
             )}
             <div className="product-cards">
-                {prod.map((prod, index) => (
+                {showProd.map((prod, index) => (
                     <div key={index} className="product-card">
                         <div className="product-image"></div>
                         <div className="product-details">
