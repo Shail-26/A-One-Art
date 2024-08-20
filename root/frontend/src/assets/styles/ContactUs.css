@@ -1,0 +1,59 @@
+.contact-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: #ffffff; Background color similar to the one in the image */
+    background-image: url('https://i.pinimg.com/564x/18/26/d2/1826d28da57d468ad2cc94f128b5cd1a.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+}
+
+.contact-form {
+    /* background-color: rgb(78, 132, 146); Form background */
+    background-color: transparent;
+    color: black;
+    padding: 20px;
+    padding-bottom: 0px;
+    border-radius: 8px;
+    width: 450px;
+    height: 300px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    border:2px solid #0e0808;
+}
+
+.contact-form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.contact-form-group input,
+.contact-form-group textarea {
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(90, 141, 142); /* Input background */
+    color: white;
+}
+
+.contact-submit-btn{
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(4, 12, 25); /* Button color */
+    color: white;
+    cursor: pointer;
+    margin-left: 0px;
+}
+
+.contact-submit-btn:hover {
+    background-color: #2907ae; /* Darker button color on hover */
+}
