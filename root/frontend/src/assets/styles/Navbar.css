@@ -1,26 +1,30 @@
-/* src/Navbar.css */
-.body{
-  margin: 0;
-  padding: 0;
-  padding-top: 60%;
-}
+
 .navbar {
   position: fixed;
-  top: 8px;
-  left: 13px;
   background-color: transparent;  /* Background color of the navbar */
   z-index: 1000;           /* Ensures the navbar stays on top of other elements */
   display: flex;
   justify-content: space-between;  /* Adjusts the layout of the items in the navbar */
-  padding: 10px 20px;
+  height:auto;
   /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  Adds a slight shadow for depth */
-  width: 1470px;
+  width: 100%;
 }
+
+.nav-cont{
+  
+  display: flex;
+  justify-content: space-between;  /* Adjusts the layout of the items in the navbar */
+  padding:15px 30px;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  Adds a slight shadow for depth */
+  width: 100%; /* Adjusts the layout of the items in the navbar */
+  
+}
+
 .admin{
   position:static
 }
   
-  .navbar .logo {
+  .navbar .nav-cont .logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +45,7 @@
     margin-left: 20px;
   }
   
+  .button-class a,
   .nav-links a {
     color: #090808;
     text-decoration: none;
@@ -122,4 +127,8 @@
 
   .admin-logout {
     border-radius: 20px;
+  }
+
+  .button-class a{
+    color: white;
   }
