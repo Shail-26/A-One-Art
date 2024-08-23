@@ -26,8 +26,7 @@ const Login = () => {
     if(json.success){
         //redirect
       localStorage.setItem('token', json.authtoken);
-      navigate("../public/index.html");
-      alert("Loggedin Successfully")
+      navigate("/home");
     } else{
       alert("Invalid Credentials")
     }
