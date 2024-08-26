@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Order from './components/Order';
 import ContactUs from './components/ContactUs';
+import AboutUs from './components/AboutUs';
 import AdminRoutes from './AdminRoutes';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/Order" element={<Order />} />
           <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
           {/* <Route path="/adminhome" element={
             <>
             <div className="main-content">

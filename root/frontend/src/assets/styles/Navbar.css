@@ -48,9 +48,40 @@
     transition: all 0.3 ease;
   }
   
-  .nav-links a:hover {
+  /* .nav-links a:hover {
     color: #f42d80;
-  }
+  } */
+
+  .nav-links a {
+    color: black; /* Original link color */
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #f42d80; /* Change text color on hover */
+    text-shadow: 0 0 10px rgba(244, 45, 128, 0.7); /* Add a glowing effect */
+    transform: scale(1.1); /* Slightly enlarge the link */
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: #f42d80;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover::before {
+    visibility: visible;
+    width: 100%;
+}
+
   
   .logo img {
     height: 60px; /* Adjust the height as needed */
