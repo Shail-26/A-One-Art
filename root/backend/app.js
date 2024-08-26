@@ -1,6 +1,7 @@
 const connectToMongo = require('./db')
 const cors = require('cors')
 const express =require('express')
+const path = require('path');
 
 connectToMongo();
 
@@ -8,12 +9,18 @@ const app = express()
 const port = 5000
 
 //Available routes
+app.use(cors({
+    origin: ['http://localhost:3000'], // Allow these origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these HTTP methods
+    credentials: true // Allow cookies and authorization headers
+}));
 app.use(express.json())
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use(cors())
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/admin', require('./routes/customers'))
 app.use('/api/admin', require('./routes/product'))
+app.use('/', require('./routes/product'))
 
 app.get('/', (req, res)=>{
     res.send("<h1>Hello World</h1>")

@@ -27,6 +27,7 @@ const Customer_Manage = () => {
         fetchCustomers();
         // eslint-disable-next-line 
     }, []);
+    
     return (
         <div className="customer-manage-container">
             <div className="customer-details">

@@ -38,4 +38,14 @@ router.post('/addproduct', fetchuser, checkAdmin, upload, [
     }
 });
 
+router.get('/getallproducts', fetchuser, async (req, res) => {
+    try {
+        const products = await Product.find().select(); 
+        res.json(products);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
 module.exports = router;

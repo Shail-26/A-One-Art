@@ -60,16 +60,19 @@
 }
 
 .name {
-    background-color: rgb(255, 26, 217, 0.8);
+    background-color: rgba(255, 142, 236, 0.8);
     border-radius: 10px 0 0 10px;
+    border: solid 4px rgb(255, 26, 217, 0.8);
 }
 
 .email {
-    background-color: rgb(0, 199, 190, 0.8);
+    border: solid 4px rgb(0, 199, 190, 0.8);
+    background-color: rgba(119, 250, 244, 0.8);
 }
 
 .phone {
-    background-color: rgb(255, 204, 0, 0.8);
+    border: solid 4px rgb(255, 204, 0, 0.8);
+    background-color: rgba(255, 226, 111, 0.8);
     border-radius: 0 10px 10px 0;
 }
 
