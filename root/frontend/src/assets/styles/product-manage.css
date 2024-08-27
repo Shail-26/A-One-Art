@@ -56,19 +56,39 @@
 }
 
 /* Product image styling */
-.product-image {
-    height: auto; /* Adjusts height based on the image */
+/* .product-image {
+    height: auto;
     background-color: #e0e0e0;
     border-bottom: 1px solid #ddd;
-    display: flex; /* Ensures the image is centered vertically if needed */
-    align-items: center; /* Center the image vertically */
-    justify-content: center; /* Center the image horizontally */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
 }
 .product-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    background-color: #e0e0e0; /* Fallback color if image fails to load */
+    background-color: #e0e0e0;
+} */
+
+/* Product image container styling */
+.product-image {
+    width: 100%; /* Ensure the image takes up full width of the container */
+    height: 200px; /* Fixed height for the image container */
+    background-color: #e0e0e0; /* Grey background for smaller images */
+    border-bottom: 1px solid #ddd;
+    display: flex; /* Ensures the image is centered both horizontally and vertically */
+    align-items: center; 
+    justify-content: center;
+    overflow: hidden; /* Hide any overflow beyond the fixed size */
+}
+
+/* Product image styling */
+.product-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Contain ensures the image fits within the container while maintaining aspect ratio */
+    background-color: transparent; /* Transparent background to blend with the container */
 }
 
 

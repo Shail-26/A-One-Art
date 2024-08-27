@@ -49,36 +49,52 @@ router.get('/getallproducts', fetchuser, async (req, res) => {
 })
 
 //Route: PUT "/api/admin/updateproduct"
-router.put('/updateproduct/:id', fetchuser, checkAdmin, upload,[
-    body('name', 'Enter a valid name').isLength({ min: 3 }),
-    body('desc', 'Description must be at least 5 characters long').isLength({ min: 5 }),
-    body('price', 'Price must be a number').isNumeric(),
-],async (req, res) => {
+router.put('/updateproduct/:id', fetchuser, checkAdmin, upload, [
+    body('ename', 'Enter a valid name').isLength({ min: 3 }),
+    body('edesc', 'Description must be at least 5 characters long').isLength({ min: 5 }),
+    body('eprice', 'Price must be a number').isNumeric(),
+], async (req, res) => {
     const { name, desc, price } = req.body;
-    const imagePath = req.file.path;
+    const imagePath = req.file ? req.file.path : null;
 
-    try{
+    try {
+        // Prepare the updated product object
         const newProduct = {};
-        if (name) { newProduct.name = name; }
-        if (desc) { newProduct.desc = desc; }
-        if (price) { newProduct.price = price; }
-        if (imagePath) { newProduct.image = imagePath; }
+        if (name) newProduct.name = name;
+        if (desc) newProduct.desc = desc;
+        if (price) newProduct.price = price;
+        if (imagePath) newProduct.image = imagePath;
 
-        try {
-            let product = await Product.findById(req.params.id);
-            if (!product) { return res.status(404).send("Not Found"); }
-
-            newprod = await Product.findByIdAndUpdate(req.params.id, { $set: newProduct }, { new: true });
-            res.json({ newprod });
-        } catch (error) {
-            console.error(error.message);
-            res.status(500).send("01Internal Server Error");
+        // Find the product by ID
+        let product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).json({ error: "Product not found" });
         }
-    } catch (error){
+
+        // Update the product
+        product = await Product.findByIdAndUpdate(req.params.id, { $set: newProduct }, { new: true });
+        res.json({ success: true, product });
+    } catch (error) {
         console.error(error.message);
-        res.status(500).send("02Internal Server Error");
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+
+router.delete('/deleteproduct/:id', fetchuser, checkAdmin, async (req, res) => {
+    try {
+        // Find the product by ID
+        let product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).json({ error: "Product not found" });
+        }
+        // Delete the product
+        product = await Product.findByIdAndDelete(req.params.id)
+        res.json({ success: true, "Success" : "product has been deleted", product: product });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 })
-
 
 module.exports = router;

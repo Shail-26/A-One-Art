@@ -5,6 +5,8 @@ import '../../assets/styles/modal.css';
 const Product_Manage = () => {
     const host = "http://localhost:5000";
     const [isOpen, setIsOpen] = useState(false);
+    const [prod, setProd] = useState({id:"", ename:"", edesc:"", eprice:"", eimage:""})
+    const [isEditOpen, setEditIsOpen] = useState(false);
     const [addProd, setAddProd] = useState({
         name: '',
         desc: '',
@@ -34,9 +36,44 @@ const Product_Manage = () => {
         };
     }, []);
 
+    const openEditModal = (currentProd) => {
+        setProd({
+            id: currentProd._id,
+            ename: currentProd.name,
+            edesc: currentProd.desc,
+            eprice: currentProd.price,
+            eimage: currentProd.image
+        });
+        setEditIsOpen(true);
+    };
+
+    const closeEditModal = () => {
+        setEditIsOpen(false);
+    };
+
+    // Close modal when clicking outside of it
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (event.target.id === 'myModal') {
+                closeModal();
+                closeEditModal();
+            }
+        };
+
+        window.addEventListener('click', handleClickOutside);
+        return () => {
+            window.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         setAddProd(prevData => ({
+            ...prevData,
+            [name]: files ? files[0] : value
+        }));
+
+        setProd(prevData => ({
             ...prevData,
             [name]: files ? files[0] : value
         }));
@@ -98,6 +135,62 @@ const Product_Manage = () => {
         }
     };
 
+
+    const handleEditSubmit = async (e) => {
+        e.preventDefault();
+    
+        const formData = new FormData();
+        formData.append('name', prod.ename);
+        formData.append('desc', prod.edesc);
+        formData.append('price', prod.eprice);
+        if (prod.eimage) formData.append('image', prod.eimage); // Append image only if it exists
+    
+        try {
+            const response = await fetch(`${host}/api/admin/updateproduct/${prod.id}`, {
+                method: 'PUT',
+                body: formData,
+                headers: {
+                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                }
+            });
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+    
+            const result = await response.json();
+            console.log('Product updated:', result);
+            closeEditModal();
+            fetchProducts(); // Refresh product list
+        } catch (error) {
+            console.error('There was an error updating the product!', error);
+        }
+    };
+    
+    const deleteProduct = async (productId) => {
+        try {
+            const response = await fetch(`${host}/api/admin/deleteproduct/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                }
+            });
+    
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+    
+            const result = await response.json();
+            console.log('Product deleted:', result);
+    
+            // Optionally, refresh the product list here
+            fetchProducts();
+        } catch (error) {
+            console.error('There was an error deleting the product!', error);
+        }
+    };
+    
+
     return (
         <div className="product-manage-main-content">
             <div className="add-btn-cont">
@@ -128,6 +221,35 @@ const Product_Manage = () => {
                     </div>
                 </div>
             )}
+
+            
+
+
+            {isEditOpen && (
+                <div id="myModal" className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closeEditModal}>
+                            &times;
+                        </span>
+                        <h2>Edit Product</h2>
+                        <form id="modalForm" method="post" onSubmit={handleEditSubmit} encType="multipart/form-data">
+                            <label htmlFor="name">Name:</label>
+                            <input type="text" id="name" className="input-field" value={prod.ename} name="ename" onChange={handleChange} required /><br />
+
+                            <label htmlFor="desc">Description:</label>
+                            <textarea id="desc" className="textarea-field" value={prod.edesc} name="edesc" onChange={handleChange} required></textarea><br />
+                            
+                            <label htmlFor="price">Price:</label>
+                            <input type="price" id="price" className="input-field" value={prod.eprice} name="eprice" onChange={handleChange} required /><br />
+
+                            <label htmlFor="image">Image:</label>
+                            <input type="file" id="image" name="eimage" className="input-field" onChange={handleChange} accept=".jpg, .jpeg, .png, .heic" /><br />
+
+                            <button type="submit" className="btn-submit" >Submit</button>
+                        </form>
+                    </div>
+                </div>
+            )}
             <div className="product-cards">
                 {showProd.map((prod, index) => (
                     <div key={index} className="product-card">
@@ -138,8 +260,8 @@ const Product_Manage = () => {
                             <p className="product-name">{prod.name}</p>
                             <p className="product-price">Rs. {prod.price}</p>
                             <div className="product-actions">
-                                <button className="edit-btn">Edit</button>
-                                <button className="delete-btn">Delete</button>
+                                <button id="openModalBtn" className="edit-btn" onClick={() => openEditModal(prod)}>Edit</button>
+                                <button className="delete-btn" onClick={()=>{deleteProduct(prod._id);}}>Delete</button>
                             </div>
                         </div>
                     </div>
