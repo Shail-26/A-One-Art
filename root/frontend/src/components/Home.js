@@ -8,7 +8,7 @@ import CmLens from '../assets/images/CamLens.png';
 
 const HomePage = () => {
   return (
-    <div className='navbar-div'>
+    <div >
       <Navbar />
       <div className='container-home'>
         <div className="text-container">
