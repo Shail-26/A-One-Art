@@ -1,6 +1,6 @@
 // src/HomePage.js
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+// import { useNavigate } from "react-router-dom";
 import Navbar from './Navbar';
 import '../assets/styles/Home.css';
 import '../assets/styles/forall.css';
