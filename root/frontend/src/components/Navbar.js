@@ -15,8 +15,8 @@ const Navbar = () => {
           <li><a href="/about">Ourwork</a></li>
           <li><a href="/services">Products</a></li>
           <li><a href="/order">Order</a></li>
-          <li><a href="/contactus">Contact Us</a></li>
-          <li><a href="/contact">About Us</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/about">About Us</a></li>
         </ul>
         <div className='btn-main-class'>
           <div className='button-class'>

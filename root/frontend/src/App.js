@@ -17,10 +17,10 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/Order" element={<Order />} />
-          <Route path="/ContactUs" element={<ContactUs />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/about" element={<AboutUs />} />
           {/* <Route path="/adminhome" element={
             <>
             <div className="main-content">
