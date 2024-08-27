@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import '../assets/styles/Navbar.css';
 import '../assets/styles/forall.css';
 import logo from '../assets/images/Logo img.png';
@@ -11,12 +12,12 @@ const Navbar = () => {
           <img src={logo} alt="Logo" />
         </div>
         <ul className="nav-links">
-          <li><a href='/home'>Home</a></li>
-          <li><a href="/about">Ourwork</a></li>
-          <li><a href="/services">Products</a></li>
-          <li><a href="/order">Order</a></li>
-          <li><a href="/contact">Contact Us</a></li>
-          <li><a href="/about">About Us</a></li>
+          <li><NavLink to='/home' className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink></li>
+          <li><NavLink to="/our-work" className={({ isActive }) => (isActive ? 'active' : '')}>Ourwork</NavLink></li>
+          <li><NavLink to="/services" className={({ isActive }) => (isActive ? 'active' : '')}>Products</NavLink></li>
+          <li><NavLink to="/order" className={({ isActive }) => (isActive ? 'active' : '')}>Order</NavLink></li>
+          <li><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : '')}>Contact Us</NavLink></li>
+          <li><NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')}>About Us</NavLink></li>
         </ul>
         <div className='btn-main-class'>
           <div className='button-class'>
