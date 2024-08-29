@@ -7,6 +7,7 @@
 }
 
 /* Modal styles */
+.order-modal,
 .modal {
     display: block;
     position: fixed;
@@ -19,6 +20,15 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.order-modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index:1000;
+}
+
+.order-modal-content,
 .modal-content {
     background-color: white;
     margin: 10% auto;
@@ -27,6 +37,11 @@
     width: 30%;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.order-modal-content {
+    border-radius: 5px;
+    text-align: center;
 }
 
 .close {
@@ -63,6 +78,7 @@ h2 {
     font-size: 16px;
 }
 
+.btn-confirm,
 .btn-submit {
     padding: 10px;
     font-size: 16px;
@@ -95,6 +111,17 @@ h2 {
     cursor: pointer;
 }
 
+.btn-confirm {
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
 .btn-submit:hover {
     background-color: #45a049;
 }
+
+
+
+
+

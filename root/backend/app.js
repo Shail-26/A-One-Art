@@ -21,6 +21,7 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/admin', require('./routes/customers'))
 app.use('/api/admin', require('./routes/product'))
 app.use('/', require('./routes/product'))
+app.use('/', require('./routes/order'))
 
 app.get('/', (req, res)=>{
     res.send("<h1>Hello World</h1>")
