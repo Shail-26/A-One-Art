@@ -5,8 +5,11 @@ import '../../assets/styles/modal.css';
 const Product_Manage = () => {
     const host = "http://localhost:5000";
     const [isOpen, setIsOpen] = useState(false);
-    const [prod, setProd] = useState({id:"", ename:"", edesc:"", eprice:"", eimage:""})
+    const [prod, setProd] = useState({id:"", ename:"", edesc:"", eprice:"", eimage:""});
     const [isEditOpen, setEditIsOpen] = useState(false);
+    const [isDeleteOpen, setDeleteIsOpen] = useState(false); // Manage delete confirmation popup
+    const [deleteProdId, setDeleteProdId] = useState(null); // Store the product ID to be deleted
+
     const [addProd, setAddProd] = useState({
         name: '',
         desc: '',
@@ -21,20 +24,6 @@ const Product_Manage = () => {
     const closeModal = () => {
         setIsOpen(false);
     };
-
-    // Close modal when clicking outside of it
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (event.target.id === 'myModal') {
-                closeModal();
-            }
-        };
-
-        window.addEventListener('click', handleClickOutside);
-        return () => {
-            window.removeEventListener('click', handleClickOutside);
-        };
-    }, []);
 
     const openEditModal = (currentProd) => {
         setProd({
@@ -51,12 +40,12 @@ const Product_Manage = () => {
         setEditIsOpen(false);
     };
 
-    // Close modal when clicking outside of it
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (event.target.id === 'myModal') {
                 closeModal();
                 closeEditModal();
+                closeDeleteModal();
             }
         };
 
@@ -65,6 +54,15 @@ const Product_Manage = () => {
             window.removeEventListener('click', handleClickOutside);
         };
     }, []);
+
+    const openDeleteModal = (productId) => {
+        setDeleteProdId(productId);
+        setDeleteIsOpen(true);
+    };
+
+    const closeDeleteModal = () => {
+        setDeleteIsOpen(false);
+    };
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -98,7 +96,8 @@ const Product_Manage = () => {
         } catch (error) {
             console.error('There was an error fetching the products!', error);
         }
-    }
+    };
+
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -117,10 +116,10 @@ const Product_Manage = () => {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
                 }
             });
-            console.log(response);
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -128,13 +127,11 @@ const Product_Manage = () => {
             const result = await response.json();
             console.log('Product added:', result);
             closeModal();
-            // Optionally, refresh the product list here
             fetchProducts();
         } catch (error) {
             console.error('There was an error adding the product!', error);
         }
     };
-
 
     const handleEditSubmit = async (e) => {
         e.preventDefault();
@@ -161,15 +158,15 @@ const Product_Manage = () => {
             const result = await response.json();
             console.log('Product updated:', result);
             closeEditModal();
-            fetchProducts(); // Refresh product list
+            fetchProducts();
         } catch (error) {
             console.error('There was an error updating the product!', error);
         }
     };
-    
-    const deleteProduct = async (productId) => {
+
+    const confirmDeleteProduct = async () => {
         try {
-            const response = await fetch(`${host}/api/admin/deleteproduct/${productId}`, {
+            const response = await fetch(`${host}/api/admin/deleteproduct/${deleteProdId}`, {
                 method: 'DELETE',
                 headers: {
                     'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
@@ -182,26 +179,23 @@ const Product_Manage = () => {
     
             const result = await response.json();
             console.log('Product deleted:', result);
-    
-            // Optionally, refresh the product list here
+            closeDeleteModal();
             fetchProducts();
         } catch (error) {
             console.error('There was an error deleting the product!', error);
         }
     };
-    
 
     return (
         <div className="product-manage-main-content">
             <div className="add-btn-cont">
                 <button id="openModalBtn" className="add-product-btn" onClick={openModal}>Add Product</button>
             </div>
+
             {isOpen && (
                 <div id="myModal" className="modal">
                     <div className="modal-content">
-                        <span className="close" onClick={closeModal}>
-                            &times;
-                        </span>
+                        <span className="close" onClick={closeModal}>&times;</span>
                         <h2>Add Product</h2>
                         <form id="modalForm" method="post" onSubmit={handleSubmit} encType="multipart/form-data">
                             <label htmlFor="name">Name:</label>
@@ -211,7 +205,7 @@ const Product_Manage = () => {
                             <textarea id="desc" className="textarea-field" name="desc" onChange={handleChange} required></textarea><br />
                             
                             <label htmlFor="price">Price:</label>
-                            <input type="price" id="price" className="input-field" name="price" onChange={handleChange} required /><br />
+                            <input type="text" id="price" className="input-field" name="price" onChange={handleChange} required /><br />
 
                             <label htmlFor="image">Image:</label>
                             <input type="file" id="image" name="image" className="input-field" onChange={handleChange} accept=".jpg, .jpeg, .png, .heic" required /><br />
@@ -222,15 +216,10 @@ const Product_Manage = () => {
                 </div>
             )}
 
-            
-
-
             {isEditOpen && (
                 <div id="myModal" className="modal">
                     <div className="modal-content">
-                        <span className="close" onClick={closeEditModal}>
-                            &times;
-                        </span>
+                        <span className="close" onClick={closeEditModal}>&times;</span>
                         <h2>Edit Product</h2>
                         <form id="modalForm" method="post" onSubmit={handleEditSubmit} encType="multipart/form-data">
                             <label htmlFor="name">Name:</label>
@@ -240,7 +229,7 @@ const Product_Manage = () => {
                             <textarea id="desc" className="textarea-field" value={prod.edesc} name="edesc" onChange={handleChange} required></textarea><br />
                             
                             <label htmlFor="price">Price:</label>
-                            <input type="price" id="price" className="input-field" value={prod.eprice} name="eprice" onChange={handleChange} required /><br />
+                            <input type="text" id="price" className="input-field" value={prod.eprice} name="eprice" onChange={handleChange} required /><br />
 
                             <label htmlFor="image">Image:</label>
                             <input type="file" id="image" name="eimage" className="input-field" onChange={handleChange} accept=".jpg, .jpeg, .png, .heic" /><br />
@@ -250,6 +239,19 @@ const Product_Manage = () => {
                     </div>
                 </div>
             )}
+
+            {isDeleteOpen && (
+                <div id="myModal" className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closeDeleteModal}>&times;</span>
+                        <h2>Confirm Delete</h2>
+                        <p>Are you sure you want to delete this product?</p>
+                        <button className="btn-delete" onClick={confirmDeleteProduct}>Yes, Delete</button>
+                        <button className="btn-cancel" onClick={closeDeleteModal}>Cancel</button>
+                    </div>
+                </div>
+            )}
+
             <div className="product-cards">
                 {showProd.map((prod, index) => (
                     <div key={index} className="product-card">
@@ -261,18 +263,14 @@ const Product_Manage = () => {
                             <p className="product-price">Rs. {prod.price}</p>
                             <div className="product-actions">
                                 <button id="openModalBtn" className="edit-btn" onClick={() => openEditModal(prod)}>Edit</button>
-                                <button className="delete-btn" onClick={()=>{deleteProduct(prod._id);}}>Delete</button>
+                                <button className="delete-btn" onClick={() => openDeleteModal(prod._id)}>Delete</button>
                             </div>
                         </div>
                     </div>
                 ))}
-                
-                
-                {/* */}
             </div>
         </div>
-
     )
 }
 
-export default Product_Manage
+export default Product_Manage;
