@@ -13,7 +13,7 @@ const Navbar = () => {
         // Redirect to login page if not authenticated
         setLoggedin(true);
     }
-  });
+  },[]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
