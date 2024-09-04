@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import '../assets/styles/Order.css';
 import '../assets/styles/forall.css';
 import successIcon from '../assets/images/check-icon.png';
 
 const EventForm = () => {
-    const host = "http://localhost:5000";
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         event: '',
         description: '',
@@ -13,12 +14,19 @@ const EventForm = () => {
         dateTo: '',
         location: '',
     });
-
     const [estimatedPrice, setEstimatedPrice] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [modalContent, setModalContent] = useState('estimate');
     const [confirmOrder, setConfirmOrder] = useState(false);
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            // Redirect to login page if not authenticated
+            navigate('/login');
+        }
+    }, [navigate]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,7 +35,6 @@ const EventForm = () => {
             [name]: value
         });
     };
-
 
     const validateDates = () => {
         const { dateFrom, dateTo } = formData;
@@ -64,11 +71,18 @@ const EventForm = () => {
 
     const handleConfirm = async () => {
         try {
-            const response = await fetch(`${host}/order-det`, {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                // Handle the case where token is missing or expired
+                setError('Authentication required');
+                return;
+            }
+
+            const response = await fetch('http://localhost:5000/order-det', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZhYmQyNDRiOGVhZTI4MDFmMGFiMDk2In0sImlhdCI6MTcyNDE1MzA0Nn0.Ug_TVueNI6iwnODfHZR3Yypn0GtJiIbc5jL6gwySx4I' // Add the JWT token if needed
+                    'auth-token': token // Use the token from localStorage
                 },
                 body: JSON.stringify(formData)
             });

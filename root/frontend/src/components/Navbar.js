@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../assets/styles/Navbar.css';
 import '../assets/styles/forall.css';
 import logo from '../assets/images/Logo img.png';
 
 const Navbar = () => {
+    const [loggedin, setLoggedin] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        // Redirect to login page if not authenticated
+        setLoggedin(true);
+    }
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setLoggedin(false); // Set loggedin state to false to hide navigation links
+  };
+
   return (
     <div className="navbar">
       <div className="nav-cont">
@@ -21,8 +36,16 @@ const Navbar = () => {
         </ul>
         <div className='btn-main-class'>
           <div className='button-class'>
-            <button className='sign-in-btn nav-btn'><a href="/Login">Sign In</a></button>
-            <button className='sign-up-btn nav-btn'><a href="/Register">Sign Up</a></button>
+            {loggedin ? (
+              <>
+                <button className='logout-btn nav-btn' onClick={handleLogout}>Logout</button>
+              </>
+            ) : (
+              <>
+                <button className='sign-in-btn nav-btn'><a href="/Login">Sign In</a></button>
+                <button className='sign-up-btn nav-btn'><a href="/Register">Sign Up</a></button>
+              </>
+            )}
           </div>
         </div>
       </div>
