@@ -1,10 +1,28 @@
-import { Routes, Route } from 'react-router-dom';
+// AdminRoutes.js
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/admin/Header';
 import Sidebar from './components/admin/Sidebar';
 import Customer_Manage from './components/admin/CustomerManage';
 import Product_Manage from './components/admin/ProductManage';
 
+// Simulated function to check if the user is an admin
+const isAdmin = () => {
+    // Replace with your actual logic to determine if the user is an admin
+    const token = localStorage.getItem('auth-token');
+    const isAd = localStorage.getItem('admin');
+    // For example purposes, assume a token with 'admin' role
+    return token && isAd; // Replace with real token checking
+};
+
 const AdminRoutes = () => {
+    if (!isAdmin()) {
+        return <div className="denied">
+            <h1>Access Denied</h1>
+            <a href="/home"> &lt;Home</a>
+        </div>; // You can replace this with a redirect or popup
+    }
+
     return (
         <Routes>
             <Route path="/home" element={

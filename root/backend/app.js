@@ -2,6 +2,8 @@ const connectToMongo = require('./db')
 const cors = require('cors')
 const express =require('express')
 const path = require('path');
+const checkAdmin = require('./middleware/checkAdmin');
+const fetchuser = require('./middleware/fetchuser');
 
 connectToMongo();
 
@@ -18,7 +20,7 @@ app.use(express.json())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/auth', require('./routes/auth'))
-app.use('/api/admin', require('./routes/customers'))
+app.use('/api/admin',fetchuser, checkAdmin, require('./routes/customers'))
 app.use('/api/admin', require('./routes/product'))
 app.use('/', require('./routes/product'))
 app.use('/', require('./routes/order'))

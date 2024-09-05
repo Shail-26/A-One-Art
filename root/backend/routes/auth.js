@@ -159,7 +159,23 @@ router.post('/login', [
 
     const {email, password} = req.body;
     try{
-        let user = await User.findOne({email});
+        let user = await Admin.findOne({email});
+        if(user){
+            const passwordCompare = await bcrypt.compare(password, user.password);
+            if(!passwordCompare){
+                return res.status(400).json({error: 'Please try to login with correct credentials'});
+            }
+            const data = {
+                user:{
+                    id: user.id
+                }
+            }
+            const authtoken = jwt.sign(data, JWT_SECRET);
+            let success = true;
+            let isAdmin = true;
+            return res.json({success, authtoken, isAdmin});
+        } 
+        user = await User.findOne({email});
         if(!user){
             return res.status(400).json({error: 'Please try to login with correct credentials'});
         }
@@ -176,11 +192,11 @@ router.post('/login', [
         }
         const authtoken = jwt.sign(data, JWT_SECRET);
         let success = true;
-        res.json({success, authtoken})
+        return res.json({success, authtoken})
 
     } catch (err) {
         console.error(err.message);
-        res.status(500).send("Internal Server Error.")
+        return res.status(500).send("Internal Server Error.")
     } 
 })
 

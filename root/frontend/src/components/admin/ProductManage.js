@@ -80,10 +80,10 @@ const Product_Manage = () => {
     const [showProd, setShowProd] = useState([]);
     const fetchProducts = async () => {
         try {
-            const response = await fetch(`${host}/api/admin/getallproducts`, {
+            const response = await fetch(`${host}/getallproducts`, {
                 method: 'GET',
                 headers: {
-                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                    'auth-token': localStorage.getItem('auth-token')
                 }
             });
 
@@ -116,7 +116,7 @@ const Product_Manage = () => {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                    'auth-token': localStorage.getItem('auth-token')
                 }
             });
 
@@ -147,7 +147,7 @@ const Product_Manage = () => {
                 method: 'PUT',
                 body: formData,
                 headers: {
-                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                    'auth-token': localStorage.getItem('auth-token')
                 }
             });
     
@@ -169,7 +169,7 @@ const Product_Manage = () => {
             const response = await fetch(`${host}/api/admin/deleteproduct/${deleteProdId}`, {
                 method: 'DELETE',
                 headers: {
-                    'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                    'auth-token': localStorage.getItem('auth-token')
                 }
             });
     

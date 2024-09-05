@@ -10,7 +10,7 @@ const Customer_Manage = () => {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiZDlmODY4MTU5OTQ5MzI0NWNjNjg3In0sImlhdCI6MTcyMzcwMzM1MH0.cBy7zaGjGd71Nv1koEVZ_uwQU-p7BEifQQKXm4I7rFk'
+                    'auth-token' :  localStorage.getItem('auth-token')
                 }
             });
             if (!response.ok) {

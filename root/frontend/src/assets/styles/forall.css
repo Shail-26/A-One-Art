@@ -4,3 +4,17 @@
 body{
     font-family: "Inter", sans-serif, "Poppins";
 }
+
+.denied {
+    text-align: center; /* Centers the content horizontally */
+    margin-top: 50px;    /* Adds some space from the top */
+}
+
+.denied h1 {
+    font-size: 2em;      /* Adjust font size for h1 */
+    margin-bottom: 10px; /* Adds space between h1 and p */
+}
+
+.denied a {
+    font-size: 1.2em;    /* Adjust font size for the paragraph */
+}

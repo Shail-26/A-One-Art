@@ -5,10 +5,10 @@ import '../assets/styles/forall.css';
 import logo from '../assets/images/Logo img.png';
 
 const Navbar = () => {
-    const [loggedin, setLoggedin] = useState(false);
+  const [loggedin, setLoggedin] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('auth-token');
     if (token) {
         // Redirect to login page if not authenticated
         setLoggedin(true);
@@ -16,7 +16,8 @@ const Navbar = () => {
   },[]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('auth-token');
+    localStorage.removeItem('admin');
     setLoggedin(false); // Set loggedin state to false to hide navigation links
   };
 
@@ -38,7 +39,16 @@ const Navbar = () => {
           <div className='button-class'>
             {loggedin ? (
               <>
-                <button className='logout-btn nav-btn' onClick={handleLogout}>Logout</button>
+                {localStorage.getItem('admin') === 'true' ? (
+                  <>
+                    <button className='sign-in-btn nav-btn'><a onClick={handleLogout}>Logout</a></button>
+                    <button className='sign-up-btn nav-btn'><a href="/admin/home">Admin</a></button>
+                  </>
+                ) :(
+                  <>
+                    <button className='logout-btn nav-btn' onClick={handleLogout}>Logout</button>
+                  </>
+                )}
               </>
             ) : (
               <>

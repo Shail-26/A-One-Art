@@ -23,9 +23,14 @@ const Login = () => {
     });
     const json = await response.json() 
     console.log(json);
-    if(json.success){
+    if(json.success && json.isAdmin){
+      localStorage.setItem('auth-token', json.authtoken);
+      localStorage.setItem('admin', true);
+      
+      navigate("/admin/home");
+    } else if(json.success){
         //redirect
-      localStorage.setItem('token', json.authtoken);
+      localStorage.setItem('auth-token', json.authtoken);
       navigate("/home");
     } else{
       alert("Invalid Credentials")
