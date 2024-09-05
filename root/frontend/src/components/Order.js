@@ -21,7 +21,7 @@ const EventForm = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('auth-token');
         if (!token) {
             // Redirect to login page if not authenticated
             navigate('/login');
@@ -71,7 +71,7 @@ const EventForm = () => {
 
     const handleConfirm = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem('auth-token');
             if (!token) {
                 // Handle the case where token is missing or expired
                 setError('Authentication required');
