@@ -7,6 +7,10 @@
     padding: 20px;
     padding-top: 120px;
     background-color: #f9f9f9;
+    background-image: url('https://i.pinimg.com/736x/fd/b6/b9/fdb6b9bedb796730a8c20aec44285176.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   
   /* Individual product card */
