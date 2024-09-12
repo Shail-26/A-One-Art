@@ -125,8 +125,8 @@ const EventForm = () => {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="description">Description</label>
-                        <input type="text" id="description" name="description" value={formData.description} onChange={handleChange} />
+                        <label htmlFor="desc">Description</label>
+                        <input type="text" id="desc" name="desc" value={formData.desc} onChange={handleChange} />
                     </div>
                     <div className="form-group">
                         <label>Date</label>

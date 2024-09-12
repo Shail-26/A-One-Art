@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../assets/styles/OrderManage.css';
 
 const OrderManagement = () => {
+    const host = "http://localhost:5000";
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -9,7 +10,7 @@ const OrderManagement = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await fetch('http://localhost:5000/fetchorder', {
+                const response = await fetch(`${host}/fetchorder`, {
                     method: 'GET',
                     headers: {
                         'auth-token': localStorage.getItem('auth-token')
@@ -46,6 +47,7 @@ const OrderManagement = () => {
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
+                            <th>Event Name</th>
                             <th>Description</th>
                             <th>Status</th>
                         </tr>
@@ -55,7 +57,8 @@ const OrderManagement = () => {
                             <tr key={order.id}>
                                 <td>{index + 1}</td>
                                 <td>{order.name}</td>
-                                <td>{order.description}</td>
+                                <td>{order.event}</td>
+                                <td>{order.desc}</td>
                                 <td>
                                     <button className={order.status.toLowerCase()}>
                                         {order.status}
