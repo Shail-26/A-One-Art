@@ -29,7 +29,7 @@ const Navbar = () => {
         </div>
         <ul className="nav-links">
           <li><NavLink to='/home' className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink></li>
-          <li><NavLink to="/our-work" className={({ isActive }) => (isActive ? 'active' : '')}>Ourwork</NavLink></li>
+          <li><NavLink to="/ourwork" className={({ isActive }) => (isActive ? 'active' : '')}>Ourwork</NavLink></li>
           <li><NavLink to="/services" className={({ isActive }) => (isActive ? 'active' : '')}>Products</NavLink></li>
           <li><NavLink to="/order" className={({ isActive }) => (isActive ? 'active' : '')}>Order</NavLink></li>
           <li><NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : '')}>Contact Us</NavLink></li>
