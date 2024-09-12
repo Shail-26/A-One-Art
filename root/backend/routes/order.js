@@ -1,5 +1,6 @@
 const express = require('express');
 const fetchuser = require('../middleware/fetchuser');
+const checkAdmin = require('../middleware/checkAdmin');
 const Order = require('../models/Order');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
@@ -81,5 +82,15 @@ router.post('/order-det', [
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+router.get('/fetchorder', fetchuser, checkAdmin, async (req, res) => {
+    try {
+        const orders = await Order.find();
+        res.json(orders);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
 
 module.exports = router;

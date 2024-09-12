@@ -1,0 +1,54 @@
+
+.order-management {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.order-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.confirm {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.pending {
+    background-color: #e83e8c; /* Pink */
+    color: white;
+}
+
+.complete {
+    background-color: #007bff; /* Blue */
+    color: white;
+}

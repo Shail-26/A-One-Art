@@ -5,6 +5,7 @@ import Header from './components/admin/Header';
 import Sidebar from './components/admin/Sidebar';
 import Customer_Manage from './components/admin/CustomerManage';
 import Product_Manage from './components/admin/ProductManage';
+import OrderManagement from './components/admin/OrderManage';
 
 // Simulated function to check if the user is an admin
 const isAdmin = () => {
@@ -48,6 +49,15 @@ const AdminRoutes = () => {
                     <div className="main-content">
                         <Sidebar />
                         <Product_Manage className="product_manage"/>
+                    </div>
+                </>
+            } />
+            <Route path="/order-manage" element={
+                <>
+                    <Header />
+                    <div className="main-content">
+                        <Sidebar />
+                        <OrderManagement class="order-manage"/>
                     </div>
                 </>
             } />
