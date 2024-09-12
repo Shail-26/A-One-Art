@@ -1,29 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../assets/styles/OrderManage.css';
 
 const OrderManagement = () => {
-    const orders = [
-        { id: 1, name: "Order 1" },
-        { id: 2, name: "Order 2" },
-        { id: 3, name: "Order 3" },
-        { id: 4, name: "Order 4" },
-        { id: 5, name: "Order 5" },
-    ];
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/fetchorder', {
+                    method: 'GET',
+                    headers: {
+                        'auth-token': localStorage.getItem('auth-token')
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    setOrders(data); 
+                } else {
+                    throw new Error(data.message || 'Failed to fetch orders');
+                }
+            } catch (err) {
+                setError(err.message); 
+            } finally {
+                setLoading(false); 
+            }
+        };
+
+        fetchOrders();  
+    }, []);
+
+    if (loading) return <div>Loading orders...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+
 
     return (
         <div className="order-management">
-            <h2>Order Management</h2>
-            <div className="orders-container">
-                {orders.map(order => (
-                    <div className="order-item" key={order.id}>
-                        <div className="order-name">{order.name}</div>
-                        <div className="order-actions">
-                            <button className="btn confirm">Confirm</button>
-                            <button className="btn pending">Pending</button>
-                            <button className="btn complete">Complete</button>
-                        </div>
-                    </div>
-                ))}
+            <div className="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orders.map((order, index) => (
+                            <tr key={order.id}>
+                                <td>{index + 1}</td>
+                                <td>{order.name}</td>
+                                <td>{order.description}</td>
+                                <td>
+                                    <button className={order.status.toLowerCase()}>
+                                        {order.status}
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     );
