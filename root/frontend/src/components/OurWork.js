@@ -14,7 +14,7 @@ const OurWork = () => {
       <div className="work-container">
         <div className="work-item">
           <img src={festival} alt="Ring Ceremony" />
-          <p className="work-text">Ring Ceremony</p>
+          <p className="work-text">Festivals</p>
         </div>
         <div className="work-item">
           <img src={babyshower} alt="Baby Shower" />
@@ -30,7 +30,7 @@ const OurWork = () => {
         </div>
         <div className="work-item">
           <img src={others} alt="Wedding Ceremony" />
-          <p className="work-text">Wedding Ceremony</p>
+          <p className="work-text">Others</p>
         </div>
       </div>
     </div>
