@@ -8,6 +8,7 @@ import ContactUs from './components/ContactUs';
 import AboutUs from './components/AboutUs';
 import OurWork from './components/OurWork';
 import AdminRoutes from './AdminRoutes';
+import Products from './components/Products';
 
 // Mock function to check if user is logged in and an admin
 // const isAdmin = () => {
@@ -35,6 +36,8 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/ourwork" element={<OurWork />} />
+          <Route path="/product" element={<Products />} />
+          
           <Route path="/admin/*" element={<AdminRoutes />} />
           
         </Routes>

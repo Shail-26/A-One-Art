@@ -1,0 +1,86 @@
+/* Container for all products */
+
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Set to 5 columns */
+    gap: 20px;
+    padding: 20px;
+    padding-top: 120px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Individual product card */
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Hover effect for the product card */
+  .product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image styling */
+  .product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  /* Product details (name, description, price) */
+  .product-details {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .product-name {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .product-description {
+    font-size: 1rem;
+    color: #777;
+    margin: 10px 0;
+  }
+  
+  .product-price {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Responsive adjustments */
+  
+  /* For screens smaller than 1200px, show only 4 items per row */
+  @media (max-width: 1200px) {
+    .products-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* For screens smaller than 992px, show only 3 items per row */
+  @media (max-width: 992px) {
+    .products-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* For screens smaller than 768px, show only 2 items per row */
+  @media (max-width: 768px) {
+    .products-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* For screens smaller than 576px, show only 1 item per row */
+  @media (max-width: 576px) {
+    .products-container {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  
