@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Order from './components/Order';
 import ContactUs from './components/ContactUs';
 import AboutUs from './components/AboutUs';
+import OurWork from './components/OurWork';
 import AdminRoutes from './AdminRoutes';
 
 // Mock function to check if user is logged in and an admin
@@ -33,7 +34,7 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
-
+          <Route path="/ourwork" element={<OurWork />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
           
         </Routes>
