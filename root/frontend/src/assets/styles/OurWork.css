@@ -1,100 +1,127 @@
 /* Main container style */
 .ourwork {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center;
-    /* padding: 20px; */
-    background-color: #f5f5f5;
-    min-height: 95vh; /* Adjust height if necessary */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5f5f5;
+  min-height: 95vh;
+}
+
+/* Back button style */
+.back-button {
+  background-color: #47ceffde;
+  color: white;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  height: 80px;
+}
+
+.back-button:hover {
+  background-color: #073474d5;
+}
+
+/* Container for work items */
+.work-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  background-image: url('https://i.pinimg.com/564x/01/10/28/011028486b0fa70b934e96096af1c09e.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 120px;
+  height: 86vh;
+}
+
+/* Style for individual work items (main categories) */
+.work-item {
+  position: relative;
+  width: 350px;
+  height: 735px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.work-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for images in work items */
+.work-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Text overlay */
+.work-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 20px;
+  font-family: 'Arial', sans-serif;
+  padding: 10px 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* Category view layout (Google Images-like) */
+.category-view {
+  gap: 30px;
+  padding: 20px;
+  background-color: #fff; /* White background for better visibility */
+  padding-top: 120px;
+}
+
+/* Style for individual category images (square/landscape) */
+.category-item {
+  width: calc(33% - 20px); /* 3 items per row with some gap */
+  height: 600px; /* Square or landscape height */
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.category-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Responsive layout for mobile view */
+@media (max-width: 768px) {
+  .category-item {
+    width: calc(50% - 10px); /* 2 items per row on smaller screens */
+    height: 150px;
   }
-  
-  /* Navbar style */
-  
-  
-  /* Container for work items */
-  .work-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    width: 100%; /* Ensure it takes full width */
-    background-image: url('https://i.pinimg.com/564x/01/10/28/011028486b0fa70b934e96096af1c09e.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding-top: 120px;
-    height: 86vh;
+}
+
+@media (max-width: 480px) {
+  .category-item {
+    width: 100%; /* Full width on very small screens */
+    height: 150px;
   }
-  
-  /* Style for individual work items (photos) */
-  .work-item {
-    position: relative;
-    width: 350px; /* Adjust size as necessary */
-    height: 735px;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  /* Hover effect to give a zoom and shadow on the images */
-  .work-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Style for images */
-  .work-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-  }
-  
-  /* Text overlay with initial hidden state */
-  .work-text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
-    color: #fff;
-    font-size: 20px;
-    font-family: 'Arial', sans-serif;
-    padding: 10px 0;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-  
-    /* Initial state for animation */
-    transform: rotate(-90deg) translateY(100%);
-    opacity: 0;
-    transform-origin: left center;
-    transition: transform 0.6s ease, opacity 0.6s ease;
-  }
-  
-  /* Hover animation: rotating to 0deg, sliding up, and fading in */
-  .work-item:hover .work-text {
-    transform: rotate(0deg) translateY(0);
-    opacity: 1;
-  }
-  
-  /* Responsive layout for mobile view */
-  @media (max-width: 768px) {
-    .work-item {
-      width: 100%; /* Full width on smaller screens */
-      height: 300px;
-    }
-  }
-  
-  /* Extra small devices */
-  @media (max-width: 480px) {
-    .work-item {
-      height: 250px;
-    }
-  
-    .work-text {
-      font-size: 16px;
-    }
-  }
-  
+}
