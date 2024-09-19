@@ -93,4 +93,22 @@ router.get('/fetchorder', fetchuser, checkAdmin, async (req, res) => {
     }
 })
 
+router.put('/updateorder/:id', fetchuser, checkAdmin, async (req, res) => {
+    const { status } = req.body;
+    try {
+        let order = await Order.findById(req.params.id);
+        if (!order) {
+            return res.status(404).json({ error: "Order not found" });
+        }
+        const newOrder = {};
+        newOrder.status = status;
+        // Update the Order
+        order = await Order.findByIdAndUpdate(req.params.id, { $set: newOrder }, { new: true });
+        res.json({ success: true, order });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 module.exports = router;
