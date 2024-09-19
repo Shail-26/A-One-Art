@@ -8,7 +8,7 @@
 }
 
 /* Back button style */
-.back-button {
+/* .back-button {
   background-color: #47ceffde;
   color: white;
   padding: 10px 20px;
@@ -22,10 +22,29 @@
   transition: background-color 0.3s ease;
   height: 70px;
   width: 70px;
+} */
+
+.back-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background-image: url('../images/back-icon.png'); /* Update with the actual path */
+  background-size: cover;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 50%; /* Make the button circular */
 }
+
 
 .back-button:hover {
   background-color: #073474d5;
+  border: solid;
+  transform: scale(1.1); /* Slight zoom on hover */
+  transition: transform 0.2s ease-in-out;
 }
 
 /* Container for work items */
@@ -96,7 +115,7 @@
 .category-item {
   width: calc(33% - 20px); /* 3 items per row with some gap */
   height: 750px; /* Square or landscape height */
-  width: 70%;
+  width: 78%;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

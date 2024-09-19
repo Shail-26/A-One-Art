@@ -73,7 +73,7 @@ const OurWork = () => {
         {/* Render Back button if a category is selected */}
         {selectedCategory !== 'none' && (
           <button className="back-button" onClick={() => setSelectedCategory('none')}>
-            Back to Categories
+            
           </button>
         )}
         {renderWorkItems()}
