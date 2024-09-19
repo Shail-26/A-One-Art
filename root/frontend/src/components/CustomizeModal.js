@@ -32,31 +32,15 @@ function CustomizeModal({ product, closeModal }) {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="customName">Name:</label>
-                        <input
-                            type="text"
-                            id="customName"
-                            value={customName}
-                            onChange={(e) => setCustomName(e.target.value)}
-                            placeholder="Enter custom name"
-                        />
+                        <input type="text" id="customName" value={customName} onChange={(e) => setCustomName(e.target.value)} placeholder="Enter custom name" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="customDescription">Description:</label>
-                        <textarea
-                            id="customDescription"
-                            value={customDescription}
-                            onChange={(e) => setCustomDescription(e.target.value)}
-                            placeholder="Enter custom description"
-                        />
+                        <textarea id="customDescription" value={customDescription} maxLength={250} onChange={(e) => setCustomDescription(e.target.value)} placeholder="Enter custom description" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="customImage">Image:</label>
-                        <input
-                            type="file"
-                            id="customImage"
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                        />
+                        <input type="file" id="customImage" accept="image/*" onChange={handleImageUpload} />
                     </div>
                     {customImage && (
                         <div className="preview">

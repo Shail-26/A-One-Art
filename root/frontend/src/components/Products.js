@@ -1,65 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../assets/styles/Products.css'; // Importing the CSS styles
 import Navbar from './Navbar';
 import CustomizeModal from './CustomizeModal'; // Importing the modal component
 
 // Example array of products (you can replace this with real data)
-const products = [
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'This is a brief description of Product 1.',
-        price: '$20',
-        image: '/path/to/image1.jpg', // Replace with actual image path
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'This is a brief description of Product 1.',
-        price: '$20',
-        image: '/path/to/image1.jpg', // Replace with actual image path
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'This is a brief description of Product 1.',
-        price: '$20',
-        image: '/path/to/image1.jpg', // Replace with actual image path
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'This is a brief description of Product 1.',
-        price: '$20',
-        image: '/path/to/image1.jpg', // Replace with actual image path
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'This is a brief description of Product 1.',
-        price: '$20',
-        image: '/path/to/image1.jpg', // Replace with actual image path
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'This is a brief description of Product 1.',
-        price: '$20',
-        image: '/path/to/image1.jpg', // Replace with actual image path
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'This is a brief description of Product 1.',
-        price: '$20',
-        image: '/path/to/image1.jpg', // Replace with actual image path
-    },
-    // Add more products as needed
-];
 
 function Products() {
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentProduct, setCurrentProduct] = useState(null);
+    const [showProd, setShowProd] = useState([]);
+
+    const host = "http://localhost:5000";
+    const fetchProducts = async () => {
+        try {
+            const response = await fetch(`${host}/getallproducts`, {
+                method: 'GET',
+                headers: {
+                    'auth-token': localStorage.getItem('auth-token')
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            setShowProd(data); // Update state with fetched products
+        } catch (error) {
+            console.error('There was an error fetching the products!', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 
     // Function to handle the opening of the modal
     const openModal = (product) => {
@@ -77,18 +51,18 @@ function Products() {
         <div className="Products">
             <Navbar />
             <div className="products-container">
-                {products.map((product) => (
-                    <div className="product-card" key={product.id}>
-                        <img src={product.image} alt={product.name} className="product-image" />
+                {showProd.map((product, index) => (
+                    <div className="product-card" key={index}>
+                        <img src={`${host}/${product.image}`} alt={product.name} className="product-image" />
                         <div className="product-details">
                             <h2 className="product-name">{product.name}</h2>
-                            <p className="product-description">{product.description}</p>
+                            <p className="product-description">{product.desc}</p>
                             <div className='price-custmz-btn-div'>
-                            <p className="product-price">{product.price}</p>
-                            {/* Customize button */}
-                            <button className="customize-btn" onClick={() => openModal(product)}>
-                                Customize
-                            </button>
+                                <p className="product-price">{product.price}</p>
+                                {/* Customize button */}
+                                <button className="customize-btn" onClick={() => openModal(product)}>
+                                    Customize & Order
+                                </button>
                             </div>
                         </div>
                     </div>
