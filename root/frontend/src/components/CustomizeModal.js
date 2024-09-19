@@ -30,15 +30,15 @@ function CustomizeModal({ product, closeModal }) {
             <div className="modal-content">
                 <h2>Customize {product.name}</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group">
+                    <div className="form-group-modal">
                         <label htmlFor="customName">Name:</label>
                         <input type="text" id="customName" value={customName} onChange={(e) => setCustomName(e.target.value)} placeholder="Enter custom name" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group-modal">
                         <label htmlFor="customDescription">Description:</label>
                         <textarea id="customDescription" value={customDescription} maxLength={250} onChange={(e) => setCustomDescription(e.target.value)} placeholder="Enter custom description" />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group-modal">
                         <label htmlFor="customImage">Image:</label>
                         <input type="file" id="customImage" accept="image/*" onChange={handleImageUpload} />
                     </div>

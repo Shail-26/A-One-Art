@@ -25,26 +25,26 @@
     font-size: 1.5rem;
 }
 
-.form-group {
+.form-group-modal {
     margin-bottom: 20px;
 }
 
-.form-group label {
+.form-group-modal label {
     display: block;
     font-size: 1rem;
     margin-bottom: 5px;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
+.form-group-modal input,
+.form-group-modal textarea {
+    min-width: 100%;
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.form-group textarea {
+.form-group-modal textarea {
     width: 25rem;
     resize: none;
 }

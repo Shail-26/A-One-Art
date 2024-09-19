@@ -29,22 +29,53 @@ const Customer_Manage = () => {
     }, []);
     
     return (
-        <div className="customer-manage-container">
-            <div className="customer-details">
-            <div className="customer-header">
-                <span className="header-item name">Name</span>
-                <span className="header-item email">Email</span>
-                <span className="header-item phone">Phone</span>
+        <div className="order-management">
+            <div className="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Email Id</th>
+                            <th>Mobile No.</th>
+                            <th>Time of Creation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {customers.map((customer, index) => (
+                            <tr key={index}>
+                                <td>{index + 1}</td>
+                                <td>{customer.name}</td>
+                                <td>{customer.email}</td>
+                                <td>{customer.mobile}</td>
+                                <td>{customer.date.split("T")[0]}</td>
+                                {/* <td>
+                                    <button className={order.status.toLowerCase()}>
+                                        {customer.status}
+                                    </button>
+                                </td> */}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-            {customers.map((customer, index) => (
-                <div key={index} className="customer-row">
-                    <span className="customer-item name">{customer.name}</span>
-                    <span className="customer-item email">{customer.email}</span>
-                    <span className="customer-item phone">{customer.mobile}</span>
-                </div>
-            ))}
         </div>
-        </div>
+        // <div className="customer-manage-container">
+        //     <div className="customer-details">
+        //         <div className="customer-header">
+        //             <span className="header-item name">Name</span>
+        //             <span className="header-item email">Email</span>
+        //             <span className="header-item phone">Phone</span>
+        //         </div>
+        //         {customers.map((customer, index) => (
+        //             <div key={index} className="customer-row">
+        //                 <span className="customer-item name">{customer.name}</span>
+        //                 <span className="customer-item email">{customer.email}</span>
+        //                 <span className="customer-item phone">{customer.mobile}</span>
+        //             </div>
+        //         ))}
+        //     </div>
+        // </div>
     )
 }
 
