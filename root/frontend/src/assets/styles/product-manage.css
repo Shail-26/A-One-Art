@@ -37,7 +37,7 @@
 /* Product card grid layout */
 .product-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusts automatically based on available space */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusts automatically based on available space */
     gap: 20px; /* Space between the grid items */
     justify-content: center; /* Centers the items when there's extra space */
 }

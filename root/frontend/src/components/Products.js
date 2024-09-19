@@ -50,7 +50,7 @@ function Products() {
     return (
         <div className="Products">
             <Navbar />
-            <div className="products-container">
+            {/* <div className="products-container">
                 {showProd.map((product, index) => (
                     <div className="product-card" key={index}>
                         <img src={`${host}/${product.image}`} alt={product.name} className="product-image" />
@@ -59,10 +59,27 @@ function Products() {
                             <p className="product-description">{product.desc}</p>
                             <div className='price-custmz-btn-div'>
                                 <p className="product-price">{product.price}</p>
-                                {/* Customize button */}
                                 <button className="customize-btn" onClick={() => openModal(product)}>
                                     Customize & Order
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div> */}
+            
+            <div className="products-container">
+                {showProd.map((prod, index) => (
+                    <div key={index} className="product-card">
+                        <div className='product-image'>
+                            <img className="product-img" alt={prod.name} src={`${host}/${prod.image}`}></img>
+                        </div>
+                        <div className="product-details">
+                            <p className="product-name">{prod.name}</p>
+                            <p className="product-description">{prod.desc}</p>
+                            <p className="product-price">Rs. {prod.price}</p>
+                            <div className="product-actions">
+                                <button id="openModalBtn" className="customize-btn" onClick={() => openModal(prod)} >Customize and Order</button>
                             </div>
                         </div>
                     </div>

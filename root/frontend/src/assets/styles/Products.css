@@ -1,12 +1,12 @@
 /* Container for all products */
 
 .Products{
-  background-color: #f9f9f9;
-  background-image: url('https://i.pinimg.com/736x/fd/b6/b9/fdb6b9bedb796730a8c20aec44285176.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
+  /* background-repeat: no-repeat; */
+  /* height: 100vh; */
+  /* background-color: #4158D0;
+  background-image:linear-gradient(43deg,#4158D0,#C850C0,#FFCC70); */
+  background-color: #0093E9;
+  background-image:linear-gradient(160deg,#0093E9,#80D0C7);
 }
 
 .products-container {
@@ -16,6 +16,7 @@
     padding: 20px;
     padding-top: 120px;
   }
+  
   
   /* Individual product card */
   .product-card {
