@@ -3,83 +3,73 @@
     justify-content: center;
     align-items: center;
     height: 95vh;
-    /* background-color: rgb(184, 212, 204);
-    border-radius: 10px; */
     background-image: url('https://i.pinimg.com/564x/59/54/f3/5954f3190e8b83e1aab524e1830a2711.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 20px;
+    padding: 20px; /* Add some padding for space between the form and screen edges */
 }
 
 .event-form {
-    width: 400px;
-    background-color: rgba(2, 172, 239, 0.597);
-    padding: 20px;
+    width: 600px; /* Increased form size */
+    background-color: rgba(2, 172, 239, 0.7); /* Slightly increased transparency for effect */
+    padding: 40px; /* Increase padding for more inner spacing */
     border-radius: 12px;
     color: white;
+    margin: 0 20px; /* Equal margin from left and right */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Optional: Add some shadow for depth */
 }
 
 .form-group {
-    margin-bottom: 20px;
-    margin-right: 20px;
+    margin-bottom: 25px; /* Adjust margin between form fields */
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px; /* Increase space between label and input */
+    font-size: 1.1rem; /* Larger font for readability */
 }
 
 .form-group input,
 .form-group select {
-    width: 105%;
-    padding: 10px;
-    padding-right: 50px;
-    border-radius: 5px;
-    /* border: 1px solid #ccc; */
-    border: none;
-    /* background-color: #d8c7c7; */
-    background-color: white;
-    color: black;
-}
-
-.form-group input {
     width: 100%;
-    padding: 10px;
-    border: none;
+    padding: 15px; /* Increased padding for input fields */
     border-radius: 5px;
+    border: none;
     background-color: white;
     color: black;
+    font-size: 1.1rem; /* Slightly larger font for input fields */
 }
 
 .date-range {
     display: flex;
     align-items: center;
+    gap: 10px; /* Use gap for better spacing */
 }
 
 .date-range input {
-    width: calc(50% - 10px);
-    margin-right: 10px;
-}
-
-.date-range input:last-child {
-    margin-right: 0;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    color: black;
 }
 
 .date-range span {
-    margin: 0 20px;
+    margin: 0 10px;
     color: white;
 }
 
 .order-btn {
     display: block;
     width: 100%;
-    padding: 10px;
-    margin-left: 10px;
+    padding: 15px;
     border: none;
     border-radius: 5px;
     background-color: rgb(45, 49, 144);
     color: white;
+    font-size: 1.2rem; /* Larger button text */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -88,7 +78,8 @@
     background-color: rgb(17, 19, 95);
 }
 
-.error{
+.error {
     color: red;
-    margin-bottom:10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem; /* Adjust error text size */
 }
