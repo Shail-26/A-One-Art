@@ -1,95 +1,226 @@
+/* Sidebar container */
 .sidebar {
     min-width: 310px;
-    border-radius: 15px;
-    height: 600px;
-    font-size : 20px;
-    background-color: rgb(228, 232, 254);
+    height: 700px;
+    background-color: #F0F4FF;
     padding: 20px;
     box-sizing: border-box;
+    border-radius: 15px;
+    border: 2px solid rgba(115, 117, 130, 0.479);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
     overflow: hidden;
-    border : 2px solid rgba(115, 117, 130, 0.479);
-}
-.btn-container{
-    display: flex;
-}
-.btns{
-    display: flex;
-    flex-direction: column;
-    height: 200px;
+    transition: all 0.3s ease; /* Smooth transition */
 }
 
-.btns .agrn:hover{
-    color:#00C7BE;
-    font-weight : bold;
-}
-.btns .apnk:hover{
-    font-weight : bold;
-    color: #FF1AD9;
-}
-.btns .aylw:hover{
-    font-weight : bold;
-    color: #FFCC00;
-}
-.btns .ablu:hover{
-    font-weight : bold;
-    color: #007AFF;
-}
-.btns .algrn:hover{
-    font-weight : bold;
-    color: #34C759;
-}
-.btns-2 .ared:hover{
-    font-weight : bold;
-    color: red;
-}
-.dot {
-    margin-right: 10px;
-    height: 25px;
-    width: 25px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
+.sidebar:hover {
+    transform: scale(1.02); /* Slightly enlarges the sidebar on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
 
 .menu {
     margin: 20px 0 30px 10px;
 }
 
-.btns .grn{
+/* Flex container for buttons */
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between buttons */
+}
+
+/* Button styles */
+.btns {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btns a {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: #333;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Button shadow */
+}
+
+.btns a:hover {
+    transform: translateX(10px); /* Slight slide animation on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    font-weight: bold;
+}
+
+/* Specific button color effects */
+.btns .agrn:hover {
+    color: #00C7BE;
+}
+
+.btns .apnk:hover {
+    color: #FF1AD9;
+}
+
+.btns .aylw:hover {
+    color: #FFCC00;
+}
+
+.btns .ablu:hover {
+    color: #007AFF;
+}
+
+.btns .algrn:hover {
+    color: #34C759;
+}
+
+/* Dots next to buttons */
+.dot {
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.btns .grn .dot {
     background-color: #00C7BE;
 }
-.btns .pnk{
+
+.btns .pnk .dot {
     background-color: #FF1AD9;
 }
-.btns .ylw{
+
+.btns .ylw .dot {
     background-color: #FFCC00;
 }
-.btns .blu{
+
+.btns .blu .dot {
     background-color: #007AFF;
 }
-.btns .lgrn{
+
+.btns .lgrn .dot {
     background-color: #34C759;
 }
-.btns-2 .red{
+
+/* .btns-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: auto; 
+}
+
+.btns-2 .red:hover {
+    color: red;
+} */
+
+/* Logout button styling */
+/* Sidebar container */
+
+/* Container for the buttons and content */
+.btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1; /* This will push the logout button to the bottom */
+}
+
+/* Button container */
+.btns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Logout button styling */
+.btns-2 {
+    position: fixed;
+    bottom: 30px;
+}
+
+.btns-2 a {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: white; /* Text color for logout button */
+    font-size: 18px;
+    background-color: #FF4757; /* Default background color */
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Button shadow */
+}
+
+/* Hover effect for the logout button */
+.btns-2 a:hover {
+    background-color: #FF2C3D; /* Darker red on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateX(10px); /* Slide to the right on hover */
+    font-weight: bold;
+}
+
+/* Dot color for logout button */
+.btns-2 .red .dot {
     background-color: red;
 }
 
-.sidebar a{
+/* Sidebar links */
+.sidebar a {
     text-decoration: none;
     display: flex;
-    color: black;
-    padding: 9px;
+    align-items: center;
+    color: #333;
+    padding: 12px;
     border-radius: 10px;
-    margin-bottom : 10px;
-}
-.sidebar a:hover {
-    text-decoration: none;
-    cursor:pointer;
+    transition: all 0.3s ease;
 }
 
-.btns-2{
+.sidebar a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgba(0, 122, 255, 0.1); /* Light background change on hover */
+}
+
+
+/* Button background color */
+.btns .grn {
+    background-color: #00C7BE;
+}
+
+.btns .pnk {
+    background-color: #FF1AD9;
+}
+
+.btns .ylw {
+    background-color: #FFCC00;
+}
+
+.btns .blu {
+    background-color: #007AFF;
+}
+
+.btns .lgrn {
+    background-color: #34C759;
+}
+
+.btns-2 .red {
+    background-color: red;
+}
+
+/* Sidebar links */
+.sidebar a {
+    text-decoration: none;
     display: flex;
-    margin-top: 230px;
-    flex-direction: column;
-    height: 200px;
+    align-items: center;
+    color: #333;
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgba(0, 122, 255, 0.1); /* Light background change on hover */
 }

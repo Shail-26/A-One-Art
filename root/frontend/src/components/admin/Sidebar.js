@@ -37,8 +37,7 @@ const Sidebar = () => {
                     <a href="/admin/" className="ared" onClick={handleLogout}><span className="dot red"></span>Logout</a>
                 </div>
             </div>
-            
-            
+                    
         </div>
     );
 };
