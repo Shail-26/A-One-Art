@@ -30,7 +30,7 @@ const Sidebar = () => {
                         <a href="/admin/customer-details" className="apnk"><span className="dot pnk"></span>Customer Details</a>
                         <a href="/admin/order-manage" className="aylw"><span className="dot ylw"></span>Order Management</a>
                         <a href="/admin/product-manage" className="ablu"><span className="dot blu"></span>Product Management</a>
-                        <a href="/admin/home" className="algrn"><span className="dot lgrn"></span>Studio Services</a>
+                        <a href="/admin/custom-order-manage" className="algrn"><span className="dot lgrn"></span>Custom Order Manage</a>
                     </div>
                 </div>
                 <div className="btns-2">
