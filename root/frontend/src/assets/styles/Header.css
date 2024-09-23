@@ -4,3 +4,60 @@
     height: 80px;
     border-radius: 8px;
 }
+
+/* Header.css */
+
+
+.nav-cont p {
+    font-size: 20px; /* Adjust the font size as per your preference */
+    color: #333; /* Change the text color */
+    margin: 0 15px; /* Add margin for spacing between elements */
+    font-weight: bold; /* Makes the text bold */
+    /* text-transform: uppercase; Capitalizes the text */
+    align-self: center; /* Aligns the text vertically if used in flex containers */
+}
+
+/* To ensure proper spacing and positioning of the elements inside .nav-cont */
+.nav-cont {
+    display: flex;
+    align-items: center; /* Centers items vertically */
+    justify-content: space-between; /* Adds space between logo, "Hello Owner," and buttons */
+    padding: 10px 20px; /* Adjusts padding around the navbar content */
+}
+
+/* Header.css */
+
+/* Profile section wrapper */
+.profile-section {
+    display: flex;
+    align-items: center; /* Vertically center the profile pic and text */
+    gap: 10px; /* Space between the profile picture and text */
+}
+
+/* Profile picture styling */
+.profile-pic {
+    width: 40px; /* Set a width for the profile picture */
+    height: 40px; /* Same height as width to make it a square */
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover; /* Ensures the image fits within the circular area */
+    border: 2px solid #0f1012; /* Optional: Add a border around the picture */
+}
+
+/* Styling for the "Hello Owner" text */
+.profile-section p {
+    font-size: 25px;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+    /* text-transform: uppercase; */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-section p:hover {
+    color: #007AFF;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+/* Additional CSS for Navbar, buttons, etc. can stay the same */
+
