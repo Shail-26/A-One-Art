@@ -113,6 +113,7 @@ const OrderManagement = () => {
                             <th>No.</th>
                             <th>Name</th>
                             <th>Event Name</th>
+                            <th>Mobile No.</th>
                             <th>Description</th>
                             <th>Status</th>
                         </tr>
@@ -123,6 +124,7 @@ const OrderManagement = () => {
                                 <td>{index + 1}</td>
                                 <td>{order.name}</td>
                                 <td>{order.event}</td>
+                                <td>{order.mobile}</td>
                                 <td>{order.desc}</td>
                                 <td>
                                     {/* Toggle dropdown on button click */}
