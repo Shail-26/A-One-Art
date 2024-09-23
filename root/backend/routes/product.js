@@ -7,6 +7,7 @@ const { body, validationResult } = require('express-validator');
 const upload = require('../middleware/fileupload'); // Import the multer configuration
 const CustomerOrder = require('../models/CustomOrder');
 const User = require('../models/User');
+const CustomOrder = require('../models/CustomOrder');
 
 // Route: POST "/api/admin/addproduct". Admin Login Required
 router.post('/addproduct', fetchuser, checkAdmin, upload, [
@@ -88,6 +89,17 @@ router.post('/customizeorder', fetchuser, upload, [
         res.status(500).send("Internal Server Error");
     }
 });
+
+router.get('/fetchproductorder', fetchuser, checkAdmin,
+    async (req, res) => {
+        try {
+            const product_order = await CustomOrder.find().select(); 
+            res.json(product_order);
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send("Internal Server Error");
+        }
+})
 
 //Route: PUT "/api/admin/updateproduct"
 router.put('/updateproduct/:id', fetchuser, checkAdmin, upload, [
