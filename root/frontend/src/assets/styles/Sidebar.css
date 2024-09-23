@@ -13,7 +13,7 @@
 }
 
 .sidebar:hover {
-    transform: scale(1.02); /* Slightly enlarges the sidebar on hover */
+    /* transform: scale(1.02); Slightly enlarges the sidebar on hover */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
 
@@ -134,9 +134,9 @@
 }
 
 /* Logout button styling */
-.btns-2 {
+.btns-2 a{
     position: fixed;
-    bottom: 30px;
+    bottom: 100px;
 }
 
 .btns-2 a {
