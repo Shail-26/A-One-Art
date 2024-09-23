@@ -85,7 +85,7 @@
 }
 
 .table-container button.cancelled {
-    background-color: #FF6347; 
+    background-color: rgb(255, 0, 0); 
     color: white;
 }
 

@@ -6,6 +6,7 @@ import Sidebar from './components/admin/Sidebar';
 import Customer_Manage from './components/admin/CustomerManage';
 import Product_Manage from './components/admin/ProductManage';
 import OrderManagement from './components/admin/OrderManage';
+import Dashboard from './components/admin/DashBoard';
 
 // Simulated function to check if the user is an admin
 const isAdmin = () => {
@@ -31,6 +32,7 @@ const AdminRoutes = () => {
                     <Header />
                     <div className="main-content">
                         <Sidebar />
+                        <Dashboard></Dashboard>
                     </div>
                 </>
             } />
