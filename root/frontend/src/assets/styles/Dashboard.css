@@ -1,87 +1,123 @@
 /* Main container for the dashboard */
 .dashboard-container {
-    padding: 30px;
-    background-color: rgb(248, 249, 252); /* Lighter background */
+    padding: 20px;
+    background-color: rgb(228, 232, 254);
     flex-grow: 1;
     margin-left: 20px;
-    border: 2px solid rgba(115, 117, 130, 0.1); /* Lighter border for subtle look */
+    border: 2px solid rgba(115, 117, 130, 0.479);
     border-radius: 15px;
-    min-height: 75vh;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    min-height: 75vh; 
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     animation: fadeInUp 0.6s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 
 /* Header styling */
 .dashboard-container h1 {
-    font-size: 34px;
-    margin-bottom: 20px;
+    font-size: 36px;
+    margin-bottom: 25px;
     color: #333;
     text-align: center;
     font-weight: bold;
-    background-image: linear-gradient(to right, #007AFF, #00C7BE); /* Gradient text */
+    background-image: linear-gradient(90deg, #007AFF, #00C7BE);
     -webkit-background-clip: text;
-    color: transparent;
+    color: transparent; /* Gradient text */
 }
 
-/* Metric boxes styling */
+/* Metric boxes container */
 .dashboard-metrics {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 25px;
+    margin-bottom: 40px;
 }
 
+/* Individual metric box */
 .metric-box {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
     flex: 1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For the icon effect */
+    overflow: hidden;
 }
 
 .metric-box:hover {
-    transform: translateY(-5px); /* Lifts the box slightly on hover */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .metric-box h3 {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 10px;
-    color: #007AFF;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    position: relative;
+    z-index: 1; /* Makes sure text is above the icon */
 }
 
 .metric-box p {
-    font-size: 26px;
-    font-weight: bold;
-    color: #333;
+    font-size: 30px;
+    position: relative;
+    z-index: 1; /* Ensures that the text is above the background */
+}
+
+/* Icon styling */
+.metric-box i {
+    font-size: 70px;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+/* Different colors for each metric box */
+.metric-box:nth-child(1) {
+    background: linear-gradient(135deg, #007AFF, #00C7BE); /* Blue/Teal gradient */
+}
+
+.metric-box:nth-child(2) {
+    background: linear-gradient(135deg, #34C759, #28A745); /* Green gradient */
+}
+
+.metric-box:nth-child(3) {
+    background: linear-gradient(135deg, #FF9500, #FF5E3A); /* Orange gradient */
+}
+
+.metric-box:nth-child(4) {
+    background: linear-gradient(135deg, #FF2D55, #FF3B30); /* Red/Pink gradient */
 }
 
 /* Recent activity section */
 .dashboard-section {
     background-color: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dashboard-section:hover {
-    transform: translateY(-5px); /* Lifts the section on hover */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .dashboard-section h2 {
-    font-size: 26px;
-    margin-bottom: 15px;
+    font-size: 28px;
+    margin-bottom: 20px;
     font-weight: bold;
     color: #333;
-    border-bottom: 2px solid #007AFF; /* Bottom border for section */
+    border-bottom: 3px solid #007AFF;
     padding-bottom: 10px;
 }
 
@@ -93,9 +129,10 @@
 }
 
 .recent-activity li {
-    padding: 12px 0;
+    padding: 15px 0;
     border-bottom: 1px solid #ddd;
     transition: background-color 0.3s ease;
+    font-size: 18px;
 }
 
 .recent-activity li:hover {
@@ -106,11 +143,11 @@
     border-bottom: none;
 }
 
-/* Fade-in animation for smooth appearance */
+/* Fade-in animation */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;

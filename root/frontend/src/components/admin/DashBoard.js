@@ -32,9 +32,9 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <h1>Owner Dashboard</h1>
             <div className="dashboard-metrics">
                 <div className="metric-box">
+                    <i className="fas fa-users"></i> {/* Add FontAwesome icons here */}
                     <h3>Total Customers</h3>
                     <p>{metrics.customers}</p>
                 </div>
@@ -42,10 +42,10 @@ const Dashboard = () => {
                     <h3>Total Orders</h3>
                     <p>{metrics.orders}</p>
                 </div>
-                <div className="metric-box">
+                {/* <div className="metric-box">
                     <h3>Total Revenue</h3>
                     <p>${metrics.revenue}</p>
-                </div>
+                </div> */}
                 <div className="metric-box">
                     <h3>Products in Stock</h3>
                     <p>{metrics.products}</p>
