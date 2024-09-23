@@ -11,7 +11,6 @@
 }
 
 .nav-cont{
-  
   display: flex;
   justify-content: space-between;  /* Adjusts the layout of the items in the navbar */
   padding:15px 30px;
@@ -28,6 +27,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 190px;
   }
 
   .nav-links {

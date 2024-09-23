@@ -15,7 +15,7 @@
     grid-template-columns: repeat(6, 1fr); /* Set to 5 columns */
     gap: 20px;
     padding: 20px;
-    padding-top: 120px;
+    padding-top: 50px;
   }
   
   
@@ -120,4 +120,144 @@
       grid-template-columns: repeat(1, 1fr);
     }
   }
-  
+
+
+/* Search Bar Styling */
+/* .search-bar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-top: 90px;
+  padding-left: 45px;
+  padding-bottom: 0;
+  gap: 10px;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.category-select {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+} */
+
+/* Search Bar Styling */
+/* Search Bar Styling */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 90px;
+  padding-bottom: 0;
+  gap: 20px;
+  animation: fadeIn 0.6s ease-in-out; /* Fade-in animation for the search bar */
+}
+
+.search-bar input {
+  padding: 12px;
+  width: 350px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #007AFF; /* Blue border on focus */
+  box-shadow: 0 0 10px rgba(0, 122, 255, 0.5); /* Glowing effect on focus */
+}
+
+.search-bar input:hover {
+  transform: scale(1.05); /* Slight scaling effect on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+}
+
+/* Category Select Styling */
+.category-select {
+  padding: 12px;
+  border-radius: 30px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  position: relative;
+  width: 200px;
+  cursor: pointer;
+}
+
+.category-select:hover {
+  border-color: #007AFF; /* Blue border on hover */
+  box-shadow: 0 6px 14px rgba(0, 122, 255, 0.3); /* Glow effect on hover */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+.category-select:focus {
+  outline: none;
+  border-color: #007AFF;
+  box-shadow: 0 0 10px rgba(0, 122, 255, 0.5); /* Glowing effect on focus */
+}
+
+/* Dropdown Arrow for Category Select */
+.category-select::after {
+  content: '▼';
+  font-size: 12px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+}
+
+/* Category Options Styling */
+.category-options {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.category-select:hover .category-options,
+.category-select:focus .category-options {
+  display: block; /* Show options on hover or focus */
+}
+
+.category-options div {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.category-options div:hover {
+  background-color: #007AFF; /* Highlight option on hover */
+  color: white;
+}
+
+/* Fade-in keyframe animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

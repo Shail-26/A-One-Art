@@ -4,13 +4,14 @@ import Navbar from './Navbar';
 import CustomizeModal from './CustomizeModal'; // Importing the modal component
 import ReviewModal from './ReviewModal';
 
-// Example array of products (you can replace this with real data)
-
 function Products() {
     const [isCustomizeModalOpen, setCustomizeModalOpen] = useState(false);
     const [isReviewModalOpen, setReviewModalOpen] = useState(false); // New state for review modal
     const [currentProduct, setCurrentProduct] = useState(null);
     const [showProd, setShowProd] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
     const host = "http://localhost:5000";
     const fetchProducts = async () => {
@@ -37,7 +38,16 @@ function Products() {
         fetchProducts();
     }, []);
 
-    // Function to handle the opening of the modal
+    useEffect(() => {
+        // Filter products based on search term and selected category
+        const filtered = showProd.filter(product => {
+            const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
+            const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
+            return matchesCategory && matchesSearch;
+        });
+        setFilteredProducts(filtered);
+    }, [searchTerm, selectedCategory, showProd]);
+
     const openCustomizeModal = (product) => {
         setCurrentProduct(product);
         setCustomizeModalOpen(true);
@@ -48,7 +58,6 @@ function Products() {
         setReviewModalOpen(true);
     };
 
-    // Function to handle the closing of the modal
     const closeCustomizeModal = () => {
         setCustomizeModalOpen(false);
         setCurrentProduct(null);
@@ -62,26 +71,28 @@ function Products() {
     return (
         <div className="Products">
             <Navbar />
-            {/* <div className="products-container">
-                {showProd.map((product, index) => (
-                    <div className="product-card" key={index}>
-                        <img src={`${host}/${product.image}`} alt={product.name} className="product-image" />
-                        <div className="product-details">
-                            <h2 className="product-name">{product.name}</h2>
-                            <p className="product-description">{product.desc}</p>
-                            <div className='price-custmz-btn-div'>
-                                <p className="product-price">{product.price}</p>
-                                <button className="customize-btn" onClick={() => openModal(product)}>
-                                    Customize & Order
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div> */}
-            
+            <div className="search-bar">
+                <input 
+                    type="text" 
+                    placeholder="Search for products..." 
+                    value={searchTerm} 
+                    onChange={(e) => setSearchTerm(e.target.value)} 
+                />
+                <select 
+                    className="category-select"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                >
+                    <option value="All">All Categories</option>
+                    <option value="Mug">Mug</option>
+                    <option value="Photo Frame">Photo Frame</option>
+                    <option value="Rakhi">Rakhi</option>
+                    <option value="T-Shirt">T-Shirt</option>
+                    <option value="Magic Mirror">Magic Mirror</option>
+                </select>
+            </div>
             <div className="products-container">
-                {showProd.map((prod, index) => (
+                {filteredProducts.map((prod, index) => (
                     <div key={index} className="product-card">
                         <div className='product-image'>
                             <img className="product-img" alt={prod.name} src={`${host}/${prod.image}`} onClick={() => openReviewModal(prod)}></img>
@@ -91,14 +102,13 @@ function Products() {
                             <p className="product-description">{prod.desc}</p>
                             <p className="product-price">Rs. {prod.price}</p>
                             <div className="product-actions">
-                                <button id="openModalBtn" className="customize-btn" onClick={() => openCustomizeModal(prod)} >Customize and Order</button>
+                                <button className="customize-btn" onClick={() => openCustomizeModal(prod)}>Customize and Order</button>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* Render the CustomizeModal */}
             {isCustomizeModalOpen && (
                 <CustomizeModal
                     product={currentProduct}
@@ -106,7 +116,6 @@ function Products() {
                 />
             )}
 
-            {/* Render the ReviewModal */}
             {isReviewModalOpen && (
                 <ReviewModal
                     product={currentProduct}
