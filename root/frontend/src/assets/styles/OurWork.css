@@ -65,8 +65,8 @@
 /* Style for individual work items (main categories) */
 .work-item {
   position: relative;
-  width: 350px;
-  height: 735px;
+  width: 310px;
+  height: 630px;
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
