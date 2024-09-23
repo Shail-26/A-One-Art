@@ -1,14 +1,27 @@
 /* Main container for the dashboard */
 .dashboard-container {
     padding: 30px;
-    background-color: #f9f9f9;
+    background-color: rgb(248, 249, 252); /* Lighter background */
+    flex-grow: 1;
+    margin-left: 20px;
+    border: 2px solid rgba(115, 117, 130, 0.1); /* Lighter border for subtle look */
+    border-radius: 15px;
+    min-height: 75vh;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Header styling */
 .dashboard-container h1 {
-    font-size: 32px;
+    font-size: 34px;
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
+    font-weight: bold;
+    background-image: linear-gradient(to right, #007AFF, #00C7BE); /* Gradient text */
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 /* Metric boxes styling */
@@ -21,47 +34,86 @@
 
 .metric-box {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
     flex: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-box:hover {
+    transform: translateY(-5px); /* Lifts the box slightly on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
 .metric-box h3 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 10px;
     color: #007AFF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .metric-box p {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
+    color: #333;
 }
 
 /* Recent activity section */
 .dashboard-section {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-section:hover {
+    transform: translateY(-5px); /* Lifts the section on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
 .dashboard-section h2 {
-    font-size: 24px;
+    font-size: 26px;
     margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 2px solid #007AFF; /* Bottom border for section */
+    padding-bottom: 10px;
 }
 
+/* Recent activity list */
 .recent-activity {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .recent-activity li {
-    padding: 10px 0;
+    padding: 12px 0;
     border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.recent-activity li:hover {
+    background-color: rgba(0, 122, 255, 0.1); /* Light blue background on hover */
 }
 
 .recent-activity li:last-child {
     border-bottom: none;
+}
+
+/* Fade-in animation for smooth appearance */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
