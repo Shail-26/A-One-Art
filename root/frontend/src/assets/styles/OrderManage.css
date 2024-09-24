@@ -56,6 +56,10 @@
     cursor: pointer;
 }
 
+.table-container .image-preview-btn{
+    width : 150px;
+}
+
 
 .table-container button {
     padding: 8px 16px;

@@ -104,6 +104,19 @@ const OrderManagement = () => {
         }
     }
 
+    const formatDate = (dateRangeString) => {
+        // Split the string using " to " to separate the two dates
+        const [startDate, endDate] = dateRangeString.split(' to ');
+    
+        // Remove the day and time zone from both dates
+        const cleanStartDate = startDate.split(', ').slice(1, 3).join(', ');
+        const cleanEndDate = endDate.split(', ').slice(1, 3).join(', ');
+    
+        // Return the formatted date range
+        return `${cleanStartDate} to ${cleanEndDate}`;
+    };
+
+
     return (
         <div className="order-management">
             <div className="table-container">
@@ -115,6 +128,7 @@ const OrderManagement = () => {
                             <th>Event Name</th>
                             <th>Mobile No.</th>
                             <th>Description</th>
+                            <th>Date</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -126,6 +140,7 @@ const OrderManagement = () => {
                                 <td>{order.event}</td>
                                 <td>{order.mobile}</td>
                                 <td>{order.desc}</td>
+                                <td>{formatDate(order.event_date)}</td>
                                 <td>
                                     {/* Toggle dropdown on button click */}
                                     <button 
