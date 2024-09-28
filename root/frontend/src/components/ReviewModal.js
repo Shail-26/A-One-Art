@@ -86,12 +86,16 @@ function ReviewModal({ product, closeModal }) {
 
                 {/* Show all existing reviews */}
                 <div className="reviews-list">
-                    {reviews.map((review, index) => (
-                        <div key={index} className="review-item">
-                            <p>Comment: {review.comment}</p>
-                            <span>Rating: {review.rating} ★</span>
-                        </div>
-                    ))} 
+                    {reviews.length > 0 ? (
+                        reviews.map((review, index) => (
+                            <div key={index} className="review-item">
+                                <p>Comment: {review.comment}</p>
+                                <span>Rating: {review.rating} ★</span>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No reviews</p>
+                    )}
                 </div>
 
                 <div className="write-review">
@@ -102,11 +106,7 @@ function ReviewModal({ product, closeModal }) {
                     {/* Validation error */}
                     {error && <p className="error">{error}</p>}
 
-                    <textarea
-                        value={reviewText}
-                        onChange={(e) => setReviewText(e.target.value)}
-                        placeholder="Write your review here..."
-                    ></textarea>
+                    <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} placeholder="Write your review here..."></textarea>
                     
                     <button onClick={handleSubmitReview}>Submit Review</button>
                 </div>

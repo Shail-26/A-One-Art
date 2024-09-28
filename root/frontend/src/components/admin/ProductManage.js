@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../assets/styles/product-manage.css';
 import '../../assets/styles/modal.css';
+import ReviewModal from './ReviewModal';
 
 const Product_Manage = () => {
     const host = "http://localhost:5000";
@@ -8,8 +9,9 @@ const Product_Manage = () => {
     const [prod, setProd] = useState({id:"", ename:"", edesc:"", eprice:"", eimage:""});
     const [isEditOpen, setEditIsOpen] = useState(false);
     const [isDeleteOpen, setDeleteIsOpen] = useState(false); // Manage delete confirmation popup
-    const [deleteProdId, setDeleteProdId] = useState(null); // Store the product ID to be deleted
-
+    const [isReviewModalOpen, setReviewModalOpen] = useState(false); // New state for review modal
+    const [deleteProdId, setDeleteProdId] = useState(null); // Store the product ID to be deleted    
+    const [currentProduct, setCurrentProduct] = useState(null);
     const [addProd, setAddProd] = useState({
         name: '',
         desc: '',
@@ -186,6 +188,16 @@ const Product_Manage = () => {
         }
     };
 
+    const openReviewModal = (product) => {
+        setCurrentProduct(product);
+        setReviewModalOpen(true);
+    };
+
+    const closeReviewModal = () => {
+        setReviewModalOpen(false);
+        setCurrentProduct(null);
+    };
+
     return (
         <div className="product-manage-main-content">
             <div className="add-btn-cont">
@@ -256,7 +268,7 @@ const Product_Manage = () => {
                 {showProd.map((prod, index) => (
                     <div key={index} className="product-card">
                         <div className='product-image'>
-                            <img className="product-img" alt={prod.name} src={`${host}/${prod.image}`}></img>
+                            <img className="product-img" alt={prod.name} src={`${host}/${prod.image}`} onClick={() => openReviewModal(prod)}></img>
                         </div>
                         <div className="product-details">
                             <p className="product-name">{prod.name}</p>
@@ -269,6 +281,13 @@ const Product_Manage = () => {
                     </div>
                 ))}
             </div>
+
+            {isReviewModalOpen && (
+                <ReviewModal
+                    product={currentProduct}
+                    closeModal={closeReviewModal}
+                />
+            )}
         </div>
     )
 }
