@@ -49,7 +49,26 @@ router.get('/getallproducts', fetchuser, async (req, res) => {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
-})
+});
+
+router.get('/product/:productId',fetchuser, async (req, res) => {
+    try {
+        const productId = req.params.productId;
+        
+        // Fetch product and populate the reviews array with actual review data
+        const product = await Product.findById(productId).populate('reviews');
+        
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.json(product);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 // router.post('/customizeorder', fetchuser, upload, [
 router.post('/customizeorder', fetchuser, upload, [

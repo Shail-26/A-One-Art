@@ -4,6 +4,8 @@ const checkAdmin = require('../middleware/checkAdmin');
 const Order = require('../models/Order');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
+const Product = require('../models/Product');
+const Review = require('../models/Review');
 const router = express.Router();
 
 router.post('/order-det', [
@@ -108,6 +110,61 @@ router.put('/updateorder/:id', fetchuser, checkAdmin, async (req, res) => {
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+router.post('/review/:productId', fetchuser, [
+    body('rating', 'Rating is required and should be between 1 to 5').isInt({ min: 1, max: 5 }),
+    body('comment', 'Comment should not be empty').isLength({ min: 1 })
+], async (req, res) => {
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        const { rating, comment } = req.body;
+        const productId = req.params.productId;
+        const userId = req.user.id; // Assuming user ID is extracted via fetchuser middleware
+
+        // Check if product exists
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+
+        // Check if the user has already reviewed the product
+        const existingReview = await Review.findOne({ product: productId, user: userId });
+        if (existingReview) {
+            return res.status(400).json({ message: "User has already reviewed this product" });
+        }
+
+        // Create a new review
+        const review = new Review({
+            product: productId,
+            user: userId,
+            rating,
+            comment
+        });
+
+        // Save the review
+        const savedReview = await review.save();
+
+        // Add review to the product's reviews array
+        product.reviews.push(savedReview._id);
+
+        // Update the product's average rating
+        const reviews = await Review.find({ product: productId });
+        const avgRating = reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length;
+        product.averageRating = avgRating;
+
+        // Save the updated product
+        await product.save();
+        
+        res.json(savedReview);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
     }
 });
 

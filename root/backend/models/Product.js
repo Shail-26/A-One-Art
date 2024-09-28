@@ -7,7 +7,7 @@ const ProductSchema = new Schema({
         required: true
     },
     image: {
-        type: String, // Store the file path of the uploaded image
+        type: String,
         required: true
     },
     desc: {
@@ -21,7 +21,17 @@ const ProductSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    averageRating: {
+        type: Number,
+        default: 0
+    },
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Review' // Reference to the Review model
+        }
+    ]
 });
 
 module.exports = mongoose.model('Product', ProductSchema);

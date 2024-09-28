@@ -10,6 +10,7 @@
     align-items: center;
     z-index: 1000;
     transition: opacity 0.4s ease-in-out;
+    -webkit-backdrop-filter: blur(5px); /* Adds a blur effect for better focus on modal in Safari */
     backdrop-filter: blur(5px); /* Adds a blur effect for better focus on modal */
 }
 
@@ -108,6 +109,26 @@
     transform: translateY(-2px); /* Slight lift effect on hover */
     box-shadow: 0 6px 12px rgba(0, 122, 255, 0.3); /* Enhanced shadow on hover */
 }
+
+.review-item {
+    border: 1px solid #ccc; /* Light grey border */
+    padding: 15px; /* Padding inside the box */
+    margin-bottom: 10px; /* Space between reviews */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background for each review */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.review-item p {
+    margin: 0;
+    font-size: 16px; /* Adjust the font size */
+}
+
+.review-item span {
+    font-size: 14px;
+    color: #555; /* Slightly lighter text color for the rating */
+}
+
 
 /* Keyframe animation for modal appearance */
 @keyframes modalFadeIn {
