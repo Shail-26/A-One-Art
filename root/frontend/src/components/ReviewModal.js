@@ -16,7 +16,7 @@ function ReviewModal({ product, closeModal }) {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/product/${product._id}`, {
+                const response = await fetch(`${host}/product/${product._id}`, {
                     method: 'GET',
                     headers: {
                         'auth-token': localStorage.getItem('auth-token')
