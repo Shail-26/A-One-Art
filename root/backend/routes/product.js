@@ -90,6 +90,24 @@ router.post('/customizeorder', fetchuser, upload, [
     }
 });
 
+router.put('/updatecustomproduct/:id', fetchuser, checkAdmin, async (req, res) => {
+    const { status } = req.body;
+    try {
+        let order = await CustomOrder.findById(req.params.id);
+        if (!order) {
+            return res.status(404).json({ error: "Order not found" });
+        }
+        const newOrder = {};
+        newOrder.status = status;
+        // Update the Order
+        order = await CustomOrder.findByIdAndUpdate(req.params.id, { $set: newOrder }, { new: true });
+        res.json({ success: true, order });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 router.get('/fetchproductorder', fetchuser, checkAdmin,
     async (req, res) => {
         try {

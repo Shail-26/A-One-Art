@@ -21,6 +21,10 @@ const CustomOrderSchema = new Schema({
     customImage: {
         type: String, // Store the file path of the uploaded image
     },
+    status: {
+        type: String,
+        default: 'pending'
+    },
     date: {
         type: Date,
         default: Date.now

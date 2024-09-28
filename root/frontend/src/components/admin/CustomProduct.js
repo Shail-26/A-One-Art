@@ -87,9 +87,34 @@ const OrderManagement = () => {
         }
     };
 
-    const changeStatus = async (option, id) => {
-        
-    };
+    const changeStatus = async (option,id) => {
+        const status = { status: option };
+        try {
+            const response = await fetch(`${host}/updatecustomproduct/${id}`, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': localStorage.getItem('auth-token')
+                },
+                body: JSON.stringify(status)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            console.log("Order status updated successfully", data);
+
+            setOrders((prevOrders) => 
+                prevOrders.map((order) => 
+                    order._id === id ? { ...order, status: option } : order
+                )
+            );
+        } catch (error) {
+            console.error('There was an error fetching the products!', error);
+        }
+    }
 
     return (
         <div className="order-management">
@@ -125,7 +150,7 @@ const OrderManagement = () => {
                                 <td>
                                     <button 
                                         onClick={() => toggleDropdown(index)} 
-                                        // className={order.status.toLowerCase()}
+                                        className={order.status.toLowerCase()}
                                     >
                                         {order.status}
                                     </button>

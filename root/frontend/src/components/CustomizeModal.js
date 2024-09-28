@@ -77,7 +77,6 @@ function CustomizeModal({ product, closeModal }) {
                                     value={customName}
                                     onChange={(e) => setCustomName(e.target.value)}
                                     placeholder="Enter custom name"
-                                    required
                                 />
                             </div>
                             <div className="form-group-modal">
