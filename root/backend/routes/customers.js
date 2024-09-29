@@ -15,4 +15,24 @@ router.get('/getallusers', fetchuser, checkAdmin, async (req, res) => {
     }
 });
 
+router.get('/getuser/:id', fetchuser, checkAdmin, async (req, res) => {
+    try {
+        const userId = req.params.id;
+        
+        // Fetch user by ID, excluding password
+        const user = await User.findById(userId).select("-password");
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.json(user);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+
+
 module.exports = router;
