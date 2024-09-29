@@ -8,12 +8,19 @@ import wedding from '../assets/images/wedding.jpg';
 import others from '../assets/images/others.jpg';
 
 // Import additional images for each category
-import bday1 from '../assets/images/bday.jpg';
-import bday2 from '../assets/images/bday.jpg';
+// import bday2 from '../assets/images/bday.jpg';
+import bday1 from '../assets/images/bday1.JPG';
+import others1 from '../assets/images/others1.JPG';
+import others2 from '../assets/images/others2.JPG';
 import festival1 from '../assets/images/festival.jpg';
 import festival2 from '../assets/images/festival.jpg';
-import wedding1 from '../assets/images/wedding.jpg';
-import wedding2 from '../assets/images/wedding.jpg';
+import wedding1 from '../assets/images/wedding1.JPG';
+import wedding2 from '../assets/images/wedding2.JPG';
+import wedding3 from '../assets/images/wedding3.JPG';
+import wedding4 from '../assets/images/wedding4.JPG';
+import wedding5 from '../assets/images/wedding5.JPG';
+
+
 
 const OurWork = () => {
   // Define state for selected category
@@ -21,11 +28,11 @@ const OurWork = () => {
 
   // Image categories with their respective images
   const categories = {
-    Birthday: [bday, bday1, bday2, bday, bday, festival, wedding, babyshower, wedding],
+    Birthday: [bday, bday1],
     Festival: [festival, festival1, festival2],
-    Wedding: [wedding, wedding1, wedding2],
+    Wedding: [wedding, wedding1, wedding2, wedding3, wedding4, wedding5],
     'Baby Shower': [babyshower],
-    Others: [others],
+    Others: [others, others1, others2],
   };
 
   // Render the selected category images or the main categories
