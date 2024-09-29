@@ -9,6 +9,9 @@ const OrderManagement = () => {
     const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [imageSrc, setImageSrc] = useState(null);
+    const [users, setUsers] = useState({}); // Object to store user details by ID
+
+    const dropdownRef = useRef(null);
 
     // Function to open the modal with the selected image
     const handleImageClick = (imagePath) => {
@@ -22,8 +25,6 @@ const OrderManagement = () => {
         setImageSrc(null);
     };
 
-    const dropdownRef = useRef(null);
-
     const toggleDropdown = (index) => {
         setOpenDropdownIndex(openDropdownIndex === index ? null : index);
     };
@@ -36,7 +37,6 @@ const OrderManagement = () => {
 
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
-
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
@@ -52,13 +52,32 @@ const OrderManagement = () => {
                     }
                 });
 
-                const data = await response.json();
-
-                if (response.ok) {
-                    setOrders(data); // Set orders fetched from API
-                } else {
-                    throw new Error(data.message || 'Failed to fetch orders');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch orders');
                 }
+
+                const data = await response.json();
+                setOrders(data); // Set orders fetched from API
+
+                // Fetch user details for each order
+                const userPromises = data.map(order =>
+                    fetch(`${host}/api/admin/getuser/${order.user}`, {
+                        method: 'GET',
+                        headers: {
+                            'auth-token': localStorage.getItem('auth-token')
+                        }
+                    }).then(res => res.json())
+                );
+
+                const usersData = await Promise.all(userPromises);
+
+                // Store user details in an object keyed by user ID
+                const usersObj = usersData.reduce((acc, user) => {
+                    acc[user._id] = user;
+                    return acc;
+                }, {});
+
+                setUsers(usersObj);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -87,11 +106,11 @@ const OrderManagement = () => {
         }
     };
 
-    const changeStatus = async (option,id) => {
+    const changeStatus = async (option, id) => {
         const status = { status: option };
         try {
             const response = await fetch(`${host}/updatecustomproduct/${id}`, {
-                method: 'PUT', 
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'auth-token': localStorage.getItem('auth-token')
@@ -106,15 +125,15 @@ const OrderManagement = () => {
             const data = await response.json();
             console.log("Order status updated successfully", data);
 
-            setOrders((prevOrders) => 
-                prevOrders.map((order) => 
+            setOrders((prevOrders) =>
+                prevOrders.map((order) =>
                     order._id === id ? { ...order, status: option } : order
                 )
             );
         } catch (error) {
-            console.error('There was an error fetching the products!', error);
+            console.error('There was an error updating the order status!', error);
         }
-    }
+    };
 
     return (
         <div className="order-management">
@@ -123,6 +142,8 @@ const OrderManagement = () => {
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>User Name</th>
+                            <th>Mobile</th>
                             <th>Custom Name</th>
                             <th>Description</th>
                             <th>Image</th>
@@ -133,6 +154,8 @@ const OrderManagement = () => {
                         {orders.map((order, index) => (
                             <tr key={order._id}>
                                 <td>{index + 1}</td>
+                                <td>{users[order.user] ? users[order.user].name : 'Loading...'}</td> {/* Display user name */}
+                                <td>{users[order.user] ? users[order.user].mobile : 'Loading...'}</td> {/* Display user mobile */}
                                 <td>{order.customName || 'N/A'}</td>
                                 <td>{order.customDescription || 'N/A'}</td>
                                 <td>
