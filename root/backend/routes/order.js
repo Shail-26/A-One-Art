@@ -168,4 +168,87 @@ router.post('/review/:productId', fetchuser, [
     }
 });
 
+router.put('/admin/order/:id', [
+    fetchuser,
+    checkAdmin,  // Middleware to check if the user is an admin
+    // Validate the assignedPersons array
+    body('assignedPersons').optional().isArray().withMessage('Assigned persons should be an array'),
+    body('assignedPersons.*.name', 'Person name is required').optional().notEmpty(),
+    body('assignedPersons.*.role', 'Person role is required').optional().notEmpty(),
+], async (req, res) => {
+    console.log('Request Params:', req.params);
+    console.log('Request Body:', req.body);
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        // Fetch the order using the ID from the URL
+        const orderId = req.params.id;
+        let order = await Order.findById(orderId);
+        if (!order) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+
+        // Update order fields if provided in the request
+        const { assignedPersons } = req.body;
+        // If assignedPersons are provided, update them
+        if (assignedPersons && assignedPersons.length > 0) {
+            order.assignedPersons = assignedPersons;  // This will replace the existing array of assigned persons
+        }
+
+        // Save the updated order
+        const updatedOrder = await order.save();
+
+        // Respond with the updated order
+        res.status(200).json(updatedOrder);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// API to remove a person from the assignedPersons array by ID
+router.delete('/admin/order/assigndelete/:id/:personId', [
+    fetchuser,
+    checkAdmin,  // Middleware to check if the user is an admin
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        // Fetch the order using the ID from the URL
+        const orderId = req.params.id;
+        const personId = req.params.personId;
+        const order = await Order.findById(orderId);
+        if (!order) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+
+        // Find the person by their ID and remove them
+        const updatedPersons = order.assignedPersons.filter(person => person._id !== personId);
+
+        // If the person with the given ID doesn't exist, return an error
+        if (updatedPersons.length === order.assignedPersons.length) {
+            return res.status(404).json({ error: 'Person not found with the given ID' });
+        }
+
+        // Update the assignedPersons array
+        order.assignedPersons = updatedPersons;
+
+        // Save the updated order
+        const updatedOrder = await order.save();
+
+        // Respond with the updated order
+        res.status(200).json(updatedOrder);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 module.exports = router;
