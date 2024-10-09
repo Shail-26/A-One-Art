@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 import '../assets/styles/AboutUs.css';
 import '../assets/styles/forall.css';
+import achievement1 from '../assets/images/achievement_1.png';
 
 const AboutUs = () => {
     return (
@@ -14,7 +15,7 @@ const AboutUs = () => {
                     <h2>Achievements</h2>
                     <div className="achievements-grid">
                         <div className="achievement-item">
-                            <img src="achievement1.jpg" alt="Achievement 1" />
+                            <img src={achievement1} alt="Achievement 1" />
                             <p>Description of Achievement 1</p>
                         </div>
                         <div className="achievement-item">
