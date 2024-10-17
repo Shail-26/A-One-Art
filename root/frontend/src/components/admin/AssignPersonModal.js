@@ -126,12 +126,18 @@ const AssignPersonModal = ({ closeModal, order }) => {  // Receive props from pa
                         value={personName} 
                         onChange={(e) => setPersonName(e.target.value)} 
                     />
-                    <input 
-                        type="text" 
-                        placeholder="Role" 
-                        value={role} 
-                        onChange={(e) => setRole(e.target.value)} 
-                    />
+                    <select
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                        style={{
+                            backgroundColor: "white",
+                            color: role === "" ? "grey" : "black",  // grey when not selected, black when selected
+                            width: "106%",
+                        }}
+                    >
+                        <option value="" disabled>Select Role</option>
+                        <option value="Photographer">Photographer</option>
+                    </select>
                     <input 
                         type="text" 
                         placeholder="Exposing Prize" 

@@ -96,8 +96,14 @@
     margin-bottom: 10px;
 }
 
+.assign-person-form select {
+    background-color: white;
+    color: grey;
+    width: 106%;
+}
+
 /* Input styling */
-.assign-person-form input {
+.assign-person-form input, select {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
@@ -108,7 +114,7 @@
 }
 
 /* Focus effect for inputs */
-.assign-person-form input:focus {
+.assign-person-form input:focus, select:focus {
     border-color: #007AFF;
     box-shadow: 0 0 10px rgba(0, 122, 255, 0.2);
     outline: none;
