@@ -308,7 +308,6 @@ const OrderManagement = () => {
                             <th>Description</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th>Assign</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -335,7 +334,6 @@ const OrderManagement = () => {
                                         </div>
                                     )}
                                 </td>
-                                <td>ADMIN</td>
                             </tr>
                         ))}
                     </tbody>

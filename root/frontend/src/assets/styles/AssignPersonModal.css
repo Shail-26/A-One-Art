@@ -93,6 +93,7 @@
 .assign-person-form {
     display: flex;
     flex-direction: column; /* Arrange inputs vertically */
+    margin-bottom: 10px;
 }
 
 /* Input styling */

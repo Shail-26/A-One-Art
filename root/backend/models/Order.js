@@ -43,17 +43,13 @@ const OrderSchema = new Schema({
         default: 'pending'
     },
     assignedPersons: [{
-        id: {   // Auto-incremented ID for each assigned person
-            type: Number,
-            default: () => personCounter++  // Increment automatically for each new person
-        },
         name: {
             type: String
         },
         role: {
             type: String
         },
-        expose_price: {
+        exposingPrize: {
             type: Number
         }
     }]

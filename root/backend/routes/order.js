@@ -7,6 +7,7 @@ const User = require('../models/User');
 const Product = require('../models/Product');
 const Review = require('../models/Review');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 router.post('/order-det', [
     fetchuser,
@@ -224,13 +225,19 @@ router.delete('/admin/order/assigndelete/:id/:personId', [
         // Fetch the order using the ID from the URL
         const orderId = req.params.id;
         const personId = req.params.personId;
+
+        // Ensure personId is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(personId)) {
+            return res.status(400).json({ error: 'Invalid person ID' });
+        }
+
         const order = await Order.findById(orderId);
         if (!order) {
             return res.status(404).json({ error: 'Order not found' });
         }
 
         // Find the person by their ID and remove them
-        const updatedPersons = order.assignedPersons.filter(person => person._id !== personId);
+        const updatedPersons = order.assignedPersons.filter(person => person._id.toString() !== personId);
 
         // If the person with the given ID doesn't exist, return an error
         if (updatedPersons.length === order.assignedPersons.length) {
