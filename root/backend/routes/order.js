@@ -95,6 +95,15 @@ router.get('/fetchorder', fetchuser, checkAdmin, async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 })
+router.get('/fetchorder-remain', fetchuser, checkAdmin, async (req, res) => {
+    try {
+        const orders = await Order.find({status: {$ne: 'Cancelled'}});
+        res.json(orders);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
 
 router.put('/updateorder/:id', fetchuser, checkAdmin, async (req, res) => {
     const { status } = req.body;

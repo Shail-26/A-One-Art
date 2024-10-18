@@ -138,6 +138,17 @@ router.get('/fetchproductorder', fetchuser, checkAdmin,
         }
 })
 
+router.get('/fetchproductorder-remain', fetchuser, checkAdmin,
+    async (req, res) => {
+        try {
+            const product_order = await CustomOrder.find({status: {$ne: "Cancelled"}}).select(); 
+            res.json(product_order);
+        } catch (error) {
+            console.error(error.message);
+            res.status(500).send("Internal Server Error");
+        }
+})
+
 //Route: PUT "/api/admin/updateproduct"
 router.put('/updateproduct/:id', fetchuser, checkAdmin, upload, [
     body('ename', 'Enter a valid name').isLength({ min: 3 }),
