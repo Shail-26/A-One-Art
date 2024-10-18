@@ -134,11 +134,7 @@
 }
 
 /* Logout button styling */
-.btns-2 a{
-    position: fixed;
-    bottom: 100px;
-}
-
+/* Removed fixed positioning for logout button */
 .btns-2 a {
     display: flex;
     align-items: center;
@@ -150,9 +146,10 @@
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Button shadow */
+    margin-top: 20px; /* Adds some space between other buttons and logout button */
+    width: 100px;
 }
 
-/* Hover effect for the logout button */
 .btns-2 a:hover {
     background-color: #FF2C3D; /* Darker red on hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
@@ -160,10 +157,14 @@
     font-weight: bold;
 }
 
-/* Dot color for logout button */
-.btns-2 .red .dot {
-    background-color: red;
+/* Remove fixed positioning for the button */
+.btns-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 160px;
 }
+
 
 /* Sidebar links */
 .sidebar a {
