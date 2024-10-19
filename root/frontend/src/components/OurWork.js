@@ -19,7 +19,7 @@ import wedding2 from '../assets/images/wedding2.JPG';
 import wedding3 from '../assets/images/wedding3.JPG';
 import wedding4 from '../assets/images/wedding4.JPG';
 import wedding5 from '../assets/images/wedding5.JPG';
-
+import Background2 from '../assets/images/background-4.jpg';
 
 
 const OurWork = () => {
@@ -74,7 +74,15 @@ const OurWork = () => {
   };
 
   return (
-    <div className="ourwork">
+    <div className="ourwork"
+    style={{ 
+      backgroundImage: `url(${Background2})`, // Apply background image inline
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      height: '100vh'
+    }}
+    >
       <Navbar />
       <div className={`work-container ${selectedCategory !== 'none' ? 'category-view' : ''}`}>
         {/* Render Back button if a category is selected */}
