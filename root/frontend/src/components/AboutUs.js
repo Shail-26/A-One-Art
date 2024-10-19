@@ -44,8 +44,8 @@ const AboutUs = () => {
                 <div className="section owner-details">
                     <h2>Owner Details</h2>
                     <div className="contact-info">
-                        <p class="about-mail"><strong>Email:</strong> <a href="mailto:aoneart2008@gmail.com">aoneart2008@gmail.com</a></p>
-                        <p class="about-tel"><strong>Phone No.:</strong> <a href="tel:+91 9979534982">+91 9979534982</a></p>
+                        <p className="about-mail"><strong>Email:</strong> <a href="mailto:aoneart2008@gmail.com">aoneart2008@gmail.com</a></p>
+                        <p className="about-tel"><strong>Phone No.:</strong> <a href="tel:+91 9979534982">+91 9979534982</a></p>
                     </div>
                 </div>
 

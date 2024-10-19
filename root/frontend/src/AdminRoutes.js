@@ -94,7 +94,7 @@ const AdminRoutes = () => {
                     <Header />
                     <div className="main-content">
                         <Sidebar />
-                        <OrderManagement class="order-manage"/>
+                        <OrderManagement className="order-manage"/>
                     </div>
                 </div>
             } />
@@ -111,7 +111,7 @@ const AdminRoutes = () => {
                     <Header />
                     <div className="main-content">
                         <Sidebar />
-                        <CustomProduct class="order-manage"/>
+                        <CustomProduct className="order-manage"/>
                     </div>
                 </div>
             } />
