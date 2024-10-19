@@ -137,6 +137,8 @@ const AssignPersonModal = ({ closeModal, order }) => {  // Receive props from pa
                     >
                         <option value="" disabled>Select Role</option>
                         <option value="Photographer">Photographer</option>
+                        <option value="Videographer">Videographer</option>
+                        <option value="Wireman">Wireman</option>
                     </select>
                     <input 
                         type="text" 
