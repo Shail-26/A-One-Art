@@ -25,7 +25,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="nav-cont">
         <div className="logo">
-          <img src={logo} alt="Logo" />
+        <NavLink to='/home'><img src={logo} alt="Logo" /></NavLink>
         </div>
         <ul className="nav-links">
           <li><NavLink to='/home' className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink></li>
