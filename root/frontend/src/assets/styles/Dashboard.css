@@ -1,7 +1,7 @@
 /* Main container for the dashboard */
 .dashboard-container {
     padding: 20px;
-    background-color: rgb(228, 232, 254);
+    background-color: #f0f4ff76;
     flex-grow: 1;
     margin-left: 20px;
     border: 2px solid rgba(115, 117, 130, 0.479);

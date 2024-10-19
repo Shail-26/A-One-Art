@@ -28,7 +28,7 @@ const Sidebar = () => {
                     <div className="btns">
                         <a href="/admin/home" className="agrn"><span className="dot grn"></span>Dashboard</a>
                         <a href="/admin/customer-details" className="apnk"><span className="dot pnk"></span>Customer Details</a>
-                        <a href="/admin/order-manage" className="aylw"><span className="dot ylw"></span>Order Management</a>
+                        <a href="/admin/order-manage" className="aylw"><span className="dot ylw"></span>Event Management</a>
                         <a href="/admin/product-manage" className="ablu"><span className="dot blu"></span>Product Management</a>
                         <a href="/admin/custom-order-manage" className="algrn"><span className="dot lgrn"></span>Custom Order Manage</a>
                         <div className="btns-2">
