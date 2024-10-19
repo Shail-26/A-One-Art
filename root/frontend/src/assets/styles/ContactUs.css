@@ -48,7 +48,8 @@
     margin-bottom: 20px;
 }
 
-label {
+.contact-section label,
+.feedback-section label {
     font-size: 1rem;
     color: #333;
 }
