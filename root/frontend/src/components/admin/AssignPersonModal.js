@@ -108,6 +108,15 @@ const AssignPersonModal = ({ closeModal, order }) => {  // Receive props from pa
                 <button className="close-modal" onClick={closeModal}>X</button>
                 <h2>Assign Persons for {order?.event}</h2>
 
+                {/* Display tick or cancel based on whether assignedPersons is empty */}
+                <div className="assignment-status">
+                    {assignedPersons.length > 0 ? (
+                        <span className="status-tick">✓ Person assigned</span>  // Show tick
+                    ) : (
+                        <span className="status-cancel">✗ No person assigned</span>  // Show cancel
+                    )}
+                </div>
+
                 <div className="assigned-persons-list">
                     {assignedPersons.map((person, index) => (
                         <div key={index} className="assigned-person">
