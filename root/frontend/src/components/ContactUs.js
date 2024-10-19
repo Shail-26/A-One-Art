@@ -18,7 +18,7 @@ const ContactUs = () => {
     };
 
     return (
-        <div
+        <div className='cff'
             style={{
                 backgroundImage: `url(${Background5})`,
                 backgroundSize: 'cover',
