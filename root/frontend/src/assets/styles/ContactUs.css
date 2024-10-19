@@ -4,7 +4,7 @@
     align-items: center;
     height: 95vh;
     /* background-color: #ffffff; Background color similar to the one in the image */
-    background-image: url('https://i.pinimg.com/564x/18/26/d2/1826d28da57d468ad2cc94f128b5cd1a.jpg');
+    /* background-image: url('https://i.pinimg.com/564x/18/26/d2/1826d28da57d468ad2cc94f128b5cd1a.jpg'); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -13,7 +13,7 @@
 
 .contact-form {
     /* background-color: rgb(78, 132, 146); Form background */
-    background-color: transparent;
+    background-color: white;
     color: black;
     padding: 20px;
     padding-bottom: 0px;

@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 import '../assets/styles/ContactUs.css';
 import '../assets/styles/forall.css';
+import Background5 from '../assets/images/background-4.jpg';
 
 const ContactUs = () => {
     return (
-        <div>
+        <div
+        style={{ 
+            backgroundImage: `url(${Background5})`, // Apply background image inline
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh'
+          }}
+        >
             <Navbar />
             <div className="contact-form-container">
                 <form className="contact-form">

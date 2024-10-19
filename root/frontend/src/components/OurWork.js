@@ -20,7 +20,7 @@ import wedding3 from '../assets/images/wedding3.JPG';
 import wedding4 from '../assets/images/wedding4.JPG';
 import wedding5 from '../assets/images/wedding5.JPG';
 import Background2 from '../assets/images/background-4.jpg';
-
+import Background1 from '../assets/images/background-5.jpg';
 
 const OurWork = () => {
   // Define state for selected category
@@ -80,11 +80,19 @@ const OurWork = () => {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      height: '100vh'
+      minHeight: '100vh'
     }}
     >
       <Navbar />
-      <div className={`work-container ${selectedCategory !== 'none' ? 'category-view' : ''}`}>
+      <div className={`work-container ${selectedCategory !== 'none' ? 'category-view' : ''}`}
+      style={{ 
+        backgroundImage: `url(${Background1})`, // Apply background image inline
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh'
+      }}
+      >
         {/* Render Back button if a category is selected */}
         {selectedCategory !== 'none' && (
           <button className="back-button" onClick={() => setSelectedCategory('none')}>
