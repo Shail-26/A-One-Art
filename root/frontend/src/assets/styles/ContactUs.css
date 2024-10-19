@@ -36,7 +36,8 @@
     transform: translateX(-50%);
 }
 
-h2 {
+.contact-section h2,
+.feedback-section h2 {
     color: #00bfff;
     font-size: 1.8rem;
     margin-bottom: 15px;
