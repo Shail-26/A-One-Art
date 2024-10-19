@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import '../assets/styles/Order.css';
 import '../assets/styles/forall.css';
 import successIcon from '../assets/images/check-icon.png';
+import Background4 from '../assets/images/backround-2.jpg';
 
 const EventForm = () => {
     const navigate = useNavigate();
@@ -130,7 +131,15 @@ const EventForm = () => {
     };
 
     return (
-        <div>
+        <div
+        style={{ 
+            backgroundImage: `url(${Background4})`, // Apply background image inline
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            height: '100vh'
+          }}
+        >
             <Navbar />
             <div className="event-form-container">
                 <form className="event-form" onSubmit={handleSubmit}>
