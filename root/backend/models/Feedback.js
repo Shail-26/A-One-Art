@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const FeedbackSchema = new Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Users',
         required: true,
     },
     feedbackText: {
@@ -24,6 +24,5 @@ const FeedbackSchema = new Schema({
         default: null
     }
 });
-
 
 module.exports = mongoose.model('Feedback', FeedbackSchema);

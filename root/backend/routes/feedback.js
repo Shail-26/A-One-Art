@@ -101,4 +101,18 @@ router.delete('/feedback/:id', fetchuser, async (req, res) => {
     }
 });
 
+router.get('/admin/feedbacks', fetchuser, checkAdmin, async (req, res) => {
+    try {
+        // Fetch all feedbacks
+        const feedbacks = await Feedback.find().populate('userId', 'name email');
+        
+        // Return feedback data
+        res.status(200).json({ feedbacks });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;
