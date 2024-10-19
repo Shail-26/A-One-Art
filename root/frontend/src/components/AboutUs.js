@@ -2,11 +2,20 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 import '../assets/styles/AboutUs.css';
 import '../assets/styles/forall.css';
+import Background1 from '../assets/images/background-5.jpg';
 import achievement1 from '../assets/images/achievement_1.png';
 
 const AboutUs = () => {
     return (
-        <div className='Main-div'>
+        <div className='Main-div'
+        style={{ 
+            backgroundImage: `url(${Background1})`, // Apply background image inline
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            minHeight: '100vh'
+          }}
+        >
             <Navbar />
             <div className="about-us-container">
                 {/* <h1>About Us</h1>
