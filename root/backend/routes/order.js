@@ -97,7 +97,7 @@ router.get('/fetchorder', fetchuser, checkAdmin, async (req, res) => {
 })
 router.get('/fetchorder-remain', fetchuser, checkAdmin, async (req, res) => {
     try {
-        const orders = await Order.find({status: {$ne: 'Cancelled'}});
+        const orders = await Order.find({status: {$nin: ["Cancelled", "Completed"]}});
         res.json(orders);
     } catch (error) {
         console.error(error.message);

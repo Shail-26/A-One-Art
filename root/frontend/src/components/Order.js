@@ -54,6 +54,27 @@ const EventForm = () => {
         return null;
     };
 
+    const calculatePrice = () => {
+        const { dateFrom, dateTo } = formData;
+        const startDate = new Date(dateFrom);
+        const endDate = new Date(dateTo);
+
+        // Calculate the difference in days
+        const eventDuration = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1;
+
+        // Pricing logic based on duration
+        let price = 0;
+        if (eventDuration === 1) {
+            price = 10000; // 1-day event
+        } else if (eventDuration === 2) {
+            price = 20000; // 2-day event
+        } else {
+            price = 50000; // 3+ day event
+        }
+
+        return price;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -63,7 +84,7 @@ const EventForm = () => {
             return;
         }
 
-        const calculatedPrice = 1000; // Example static value, replace with your logic
+        const calculatedPrice = calculatePrice();
         setEstimatedPrice(calculatedPrice);
         setModalContent('estimate');
         setShowModal(true);
@@ -143,7 +164,7 @@ const EventForm = () => {
                     {estimatedPrice && (
                         <div className="form-group">
                             <label htmlFor="estimated-price">Estimated Price</label>
-                            <input type="text" id="estimated-price" name="estimatedPrice" value={`$${estimatedPrice}`} readOnly />
+                            <input type="text" id="estimated-price" name="estimatedPrice" value={`Rs. ${estimatedPrice}`} readOnly />
                         </div>
                     )}
                     {error && <div className="error">{error}</div>}
@@ -158,7 +179,7 @@ const EventForm = () => {
                         <span className="close" onClick={handleCancel}>&times;</span>
                         {modalContent === 'estimate' ? (
                             <>
-                                <h2>Estimated Price: ${estimatedPrice}</h2>
+                                <h2>Estimated Price: Rs. {estimatedPrice}</h2>
                                 <p>This price is estimated and can be changed as per requirements discussed in the meeting. We will contact you soon.</p>
                                 <div className="modal-buttons">
                                     <button className="btn-confirm" onClick={handleConfirm}>Confirm</button>

@@ -200,8 +200,11 @@ const OrderManagement = () => {
         setCurrentOrder(null);
     };
 
-    const assignPerson = (person) => {
-        setAssignedPersons((prevPersons) => [...prevPersons, person]);
+    const assignPerson = (person, orderId) => {
+        setAssignedPersons((prevPersons) => ({
+            ...prevPersons,
+            [orderId]: [...(prevPersons[orderId] || []), person]
+        }));
     };
 
     useEffect(() => {
@@ -308,11 +311,12 @@ const OrderManagement = () => {
                             <th>Description</th>
                             <th>Date</th>
                             <th>Status</th>
+                            <th>Assign</th>
                         </tr>
                     </thead>
                     <tbody>
                         {orders.map((order, index) => (
-                            <tr key={index} onClick={() => openAssignModal(order)}>
+                            <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{order.name}</td>
                                 <td>{order.event}</td>
@@ -334,6 +338,7 @@ const OrderManagement = () => {
                                         </div>
                                     )}
                                 </td>
+                                <td onClick={() => openAssignModal(order)}></td>
                             </tr>
                         ))}
                     </tbody>
