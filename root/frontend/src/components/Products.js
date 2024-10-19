@@ -87,7 +87,7 @@ function Products() {
                     value={searchTerm} 
                     onChange={(e) => setSearchTerm(e.target.value)} 
                 />
-                <select 
+                {/* <select 
                     className="category-select"
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
@@ -98,7 +98,7 @@ function Products() {
                     <option value="Rakhi">Rakhi</option>
                     <option value="T-Shirt">T-Shirt</option>
                     <option value="Magic Mirror">Magic Mirror</option>
-                </select>
+                </select> */}
             </div>
             <div className="products-container">
                 {filteredProducts.map((prod, index) => (

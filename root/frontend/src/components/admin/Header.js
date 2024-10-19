@@ -2,7 +2,7 @@ import React from 'react';
 import '../../assets/styles/forall.css';
 import logo from '../../assets/images/Logo img.png';
 import profilePic from '../../assets/images/festival.jpg'; // Add your profile picture image here
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import '../../assets/styles/Header.css';
 
 const Navbar = () => {
@@ -17,7 +17,7 @@ const Navbar = () => {
         <div className="navbar admin">
             <div className="nav-cont">
                 <div className="logo">
-                    <img src={logo} alt="Logo" />
+                    <NavLink to='/admin/home'><img src={logo} alt="Logo" /></NavLink>
                 </div>
 
                 {/* Profile section */}

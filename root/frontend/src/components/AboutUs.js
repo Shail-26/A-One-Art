@@ -9,7 +9,7 @@ const AboutUs = () => {
         <div className='Main-div'>
             <Navbar />
             <div className="about-us-container">
-                <h1>About Us</h1>
+                {/* <h1>About Us</h1>
 
                 <div className="section achievements">
                     <h2>Achievements</h2>
@@ -30,7 +30,7 @@ const AboutUs = () => {
                             <p>Description of Achievement 4</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="section owner-details">
                     <h2>Owner Details</h2>
