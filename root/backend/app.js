@@ -24,6 +24,7 @@ app.use('/api/admin',fetchuser, checkAdmin, require('./routes/customers'))
 app.use('/api/admin', require('./routes/product'))
 app.use('/', require('./routes/product'))
 app.use('/', require('./routes/order'))
+app.use('/', require('./routes/feedback'))
 
 app.get('/', (req, res)=>{
     res.send("<h1>Hello World</h1>")
