@@ -3,6 +3,7 @@ import '../assets/styles/Products.css'; // Importing the CSS styles
 import Navbar from './Navbar';
 import CustomizeModal from './CustomizeModal'; // Importing the modal component
 import ReviewModal from './ReviewModal';
+import Background3 from '../assets/images/background-3.jpg';
 
 function Products() {
     const [isCustomizeModalOpen, setCustomizeModalOpen] = useState(false);
@@ -69,7 +70,15 @@ function Products() {
     };
 
     return (
-        <div className="Products">
+        <div className="Products"
+        style={{ 
+            backgroundImage: `url(${Background3})`, // Apply background image inline
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            height: '100vh'
+          }}
+        >
             <Navbar />
             <div className="search-bar">
                 <input 
