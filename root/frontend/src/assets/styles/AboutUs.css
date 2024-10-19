@@ -17,6 +17,37 @@ h1 {
     margin-bottom: 40px;
 }
 
+.owner-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.owner-details h2 {
+    font-size: 2.5rem;
+}
+
+.owner-details .contact-info p{
+    font-size: 1.5rem;
+}
+
+.contact-info .about-tel a {
+    color: #f42d80;
+}
+
+.contact-info .about-mail a{
+    color: #34C759;
+}
+
+.contact-info .about-mail a:hover {
+    color: #f42d80;
+}
+
+.contact-info .about-tel a:hover{
+    color: #34C759;
+}
+
 .achievements-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -48,9 +79,6 @@ h1 {
     font-weight: bold;
 }
 
-.contact-info a:hover {
-    color: #f42d80;
-}
 
 .map-container {
     background-color: #e9ecef;
