@@ -5,16 +5,50 @@ import '../assets/styles/forall.css';
 import Background5 from '../assets/images/background-4.jpg';
 
 const ContactUs = () => {
+    const host = "http://localhost:5000";
     const [feedback, setFeedback] = useState('');
+    const [loading, setLoading] = useState(false); // For showing a loading state
+    const [error, setError] = useState(null);
 
     const handleFeedbackChange = (e) => {
         setFeedback(e.target.value);
     };
 
-    const handleFeedbackSubmit = (e) => {
+    const handleFeedbackSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError(null);
         console.log('Feedback Submitted:', feedback);
         alert('Thank you for your feedback!');
+
+        try {
+            // Using fetch to send POST request to feedback API
+            const response = await fetch(`${host}/feedback`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': localStorage.getItem('auth-token'), // Add auth token if required
+                },
+                body: JSON.stringify({
+                    feedbackText: feedback, // Send the feedback text
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.msg || 'Error submitting feedback');
+            }
+
+            const data = await response.json();
+            console.log('Feedback Submitted:', data);
+            alert('Thank you for your feedback!');
+            setFeedback(''); // Clear the feedback form after submission
+        } catch (err) {
+            console.error('Error submitting feedback:', err.message);
+            setError(err.message || 'Error submitting feedback');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -58,7 +92,10 @@ const ContactUs = () => {
                                 required
                             ></textarea>
                         </div>
-                        <button className='feedback-submit-btn' type="submit">Submit Feedback</button>
+                        <button className='feedback-submit-btn' type="submit" disabled={loading}>
+                            {loading ? 'Submitting...' : 'Submit Feedback'}
+                        </button>
+                        {error && <p className="error-message">Error: {error}</p>}
                     </form>
                 </div>
             </div>
