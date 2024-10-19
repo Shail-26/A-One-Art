@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../assets/styles/Dashboard.css';
+import Background1 from '../../assets/images/background-5.jpg';
 
 const Dashboard = () => {
     const host = "http://localhost:5000"; // Update this with your actual API host if different

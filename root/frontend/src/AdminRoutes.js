@@ -8,6 +8,8 @@ import Product_Manage from './components/admin/ProductManage';
 import OrderManagement from './components/admin/OrderManage';
 import Dashboard from './components/admin/DashBoard';
 import CustomProduct from './components/admin/CustomProduct';
+import Background1 from '../src/assets/images/background-5.jpg';
+
 
 // Simulated function to check if the user is an admin
 const isAdmin = () => {
@@ -29,49 +31,89 @@ const AdminRoutes = () => {
     return (
         <Routes>
             <Route path="/home" element={
-                <>
+                <div className='adhm'
+                style={{ 
+                    backgroundImage: `url(${Background1})`, // Apply background image inline
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    minHeight: '100vh'
+                  }}
+                >
                     <Header />
                     <div className="main-content">
                         <Sidebar />
                         <Dashboard></Dashboard>
                     </div>
-                </>
+                </div>
             } />
             <Route path="/customer-details" element={
-                <>
+                <div className='adhm'
+                style={{ 
+                    backgroundImage: `url(${Background1})`, // Apply background image inline
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    minHeight: '100vh'
+                  }}
+                >
                     <Header />
                     <div className="main-content">
                         <Sidebar />
                         <Customer_Manage className="customer_manage"/>
                     </div>
-                </>
+                </div>
             } />
             <Route path="/product-manage" element={
-                <>
+                <div className='adhm'
+                style={{ 
+                    backgroundImage: `url(${Background1})`, // Apply background image inline
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    minHeight: '100vh'
+                  }}
+                >
                     <Header />
                     <div className="main-content">
                         <Sidebar />
                         <Product_Manage className="product_manage"/>
                     </div>
-                </>
+                </div>
             } />
             <Route path="/order-manage" element={
-                <>
+                <div className='adhm'
+                style={{ 
+                    backgroundImage: `url(${Background1})`, // Apply background image inline
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    minHeight: '100vh'
+                  }}
+                >
                     <Header />
                     <div className="main-content">
                         <Sidebar />
                         <OrderManagement class="order-manage"/>
                     </div>
-                </>
+                </div>
             } />
             <Route path="/custom-order-manage" element={
-                <>
+                <div className='adhm'
+                style={{ 
+                    backgroundImage: `url(${Background1})`, // Apply background image inline
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    minHeight: '100vh'
+                  }}
+                >
                     <Header />
                     <div className="main-content">
                         <Sidebar />
                         <CustomProduct class="order-manage"/>
                     </div>
-                </>
+                </div>
             } />
         </Routes>
     );
