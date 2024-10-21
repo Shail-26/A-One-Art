@@ -11,6 +11,9 @@ const Dashboard = () => {
         custom_orders: 0,
         products: 0
     });
+    const [recentActivity, setRecentActivity] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1); // State for pagination
+    const itemsPerPage = 4; // Number of items to show per page
 
     // Fetching dashboard data
     const fetchDashboardData = async () => {
@@ -80,10 +83,50 @@ const Dashboard = () => {
         }
     };
 
-    // Fetch data when component mounts
+    const fetchFeedbacks = async () => {
+        try {
+            const response = await fetch(`${host}/admin/feedbacks`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': localStorage.getItem('auth-token') // Ensure auth-token exists
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch feedbacks');
+            }
+
+            const data = await response.json();
+            const feedbacks = data.feedbacks.map(fb => `${fb.userId.name} (${fb.userId.email}): ${fb.feedbackText}`); // Process feedbacks
+            setRecentActivity(feedbacks);
+        } catch (error) {
+            console.error('Error fetching feedback data:', error);
+        }
+    };
+
     useEffect(() => {
-        fetchDashboardData(); // Call the fetch function on component mount
+        fetchDashboardData(); 
+        fetchFeedbacks(); 
     }, []);
+
+    const totalPages = Math.ceil(recentActivity.length / itemsPerPage); 
+
+    const handlePrevious = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handleNext = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedActivity = recentActivity.slice(startIndex, startIndex + itemsPerPage);
+
 
     return (
         <div className="dashboard-container">
@@ -115,6 +158,22 @@ const Dashboard = () => {
             <div className="dashboard-section">
                 <h2>Feedbacks from Customers</h2>
                 {/* You can add customer feedback or reviews here */}
+                <ul className="recent-activity">
+                    {paginatedActivity.map((activity, index) => (
+                        <li key={index}>{activity}</li>
+                    ))}
+                </ul>
+
+                {/* Pagination controls */}
+            </div>
+            <div className="pagination-controls">
+                <button onClick={handlePrevious} disabled={currentPage === 1}>
+                    Previous
+                </button>
+                <span>{`Page ${currentPage} of ${totalPages}`}</span>
+                <button onClick={handleNext} disabled={currentPage === totalPages}>
+                    Next
+                </button>
             </div>
         </div>
     );

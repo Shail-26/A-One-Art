@@ -7,6 +7,21 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Feedback = require('../models/Feedback');
 
+router.get('/feedbacks', fetchuser, async (req, res) => {
+    try {
+        const feedbacks = await Feedback.find({ userId: req.user.id });
+
+        if (!feedbacks || feedbacks.length === 0) {
+            return res.status(404).json({ msg: 'No feedbacks found' });
+        }
+
+        res.json({ feedbacks });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 router.post('/feedback', fetchuser, async (req, res) => {
     try {
         const { feedbackText } = req.body;

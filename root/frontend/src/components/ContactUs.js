@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import '../assets/styles/ContactUs.css';
 import '../assets/styles/forall.css';
@@ -7,30 +7,32 @@ import Background5 from '../assets/images/background-4.jpg';
 const ContactUs = () => {
     const host = "http://localhost:5000";
     const [feedback, setFeedback] = useState('');
-    const [loading, setLoading] = useState(false); // For showing a loading state
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [pastFeedbacks, setPastFeedbacks] = useState([]);
+    const [selectedFeedback, setSelectedFeedback] = useState(null);
 
+    // Function to handle feedback text change
     const handleFeedbackChange = (e) => {
         setFeedback(e.target.value);
     };
 
+    // Submit new feedback
     const handleFeedbackSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        console.log('Feedback Submitted:', feedback);
-        alert('Thank you for your feedback!');
 
         try {
-            // Using fetch to send POST request to feedback API
             const response = await fetch(`${host}/feedback`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token': localStorage.getItem('auth-token'), // Add auth token if required
+                    'auth-token': localStorage.getItem('auth-token'),
                 },
                 body: JSON.stringify({
-                    feedbackText: feedback, // Send the feedback text
+                    feedbackText: feedback,
                 }),
             });
 
@@ -42,13 +44,77 @@ const ContactUs = () => {
             const data = await response.json();
             console.log('Feedback Submitted:', data);
             alert('Thank you for your feedback!');
-            setFeedback(''); // Clear the feedback form after submission
+            setFeedback('');
         } catch (err) {
             console.error('Error submitting feedback:', err.message);
             setError(err.message || 'Error submitting feedback');
         } finally {
             setLoading(false);
         }
+    };
+
+    // Fetch past feedbacks when modal is opened
+    const fetchPastFeedbacks = async () => {
+        try {
+            const response = await fetch(`${host}/feedbacks`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': localStorage.getItem('auth-token'),
+                },
+            });
+            const data = await response.json();
+            setPastFeedbacks(data.feedbacks);
+        } catch (err) {
+            console.error('Error fetching past feedbacks:', err);
+        }
+    };
+
+    // Handle opening of the modal
+    const handleOpenModal = () => {
+        setShowModal(true);
+        fetchPastFeedbacks();
+    };
+
+    // Handle closing of the modal
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setSelectedFeedback(null);
+    };
+
+    // Update selected feedback
+    const handleFeedbackUpdate = async () => {
+        if (!selectedFeedback) return;
+        try {
+            const response = await fetch(`${host}/feedback/${selectedFeedback._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': localStorage.getItem('auth-token'),
+                },
+                body: JSON.stringify({
+                    feedbackText: selectedFeedback.feedbackText,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Error updating feedback');
+            }
+
+            alert('Feedback updated successfully');
+            fetchPastFeedbacks(); // Refresh the feedback list
+        } catch (err) {
+            console.error('Error updating feedback:', err);
+            alert('Failed to update feedback');
+        }
+    };
+
+    // Function to calculate days ago
+    const calculateDaysAgo = (updatedAt) => {
+        const now = new Date();
+        const updatedDate = new Date(updatedAt);
+        const timeDiff = Math.abs(now - updatedDate);
+        return Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
     };
 
     return (
@@ -97,8 +163,46 @@ const ContactUs = () => {
                         </button>
                         {error && <p className="error-message">Error: {error}</p>}
                     </form>
+                    <button className='past-feedback-submit-btn' onClick={handleOpenModal}>
+                        View Past Feedbacks
+                    </button>
                 </div>
             </div>
+
+            {/* Modal for viewing and updating past feedbacks */}
+            {showModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={handleCloseModal}>&times;</span>
+                        <h2>Your Past Feedbacks</h2>
+                        {pastFeedbacks.length > 0 ? (
+                            <ul>
+                                {pastFeedbacks.map(feedback => (
+                                    <li key={feedback._id} onClick={() => setSelectedFeedback(feedback)}>
+                                        {feedback.feedbackText} - 
+                                        <span className="days-ago">
+                                            ({calculateDaysAgo(feedback.updatedAt)} days ago)
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No feedbacks found.</p>
+                        )}
+
+                        {selectedFeedback && (
+                            <div className="selected-feedback-update">
+                                <h3>Edit Feedback</h3>
+                                <textarea
+                                    value={selectedFeedback.feedbackText}
+                                    onChange={(e) => setSelectedFeedback({ ...selectedFeedback, feedbackText: e.target.value })}
+                                ></textarea>
+                                <button onClick={handleFeedbackUpdate}>Update Feedback</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

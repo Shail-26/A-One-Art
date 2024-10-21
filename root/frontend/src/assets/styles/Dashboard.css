@@ -123,7 +123,8 @@
 
 /* Recent activity list */
 .recent-activity {
-    list-style: none;
+    flex-grow: 1; /* Allow the activity list to grow and take available space */
+    list-style-type: none;
     padding: 0;
     margin: 0;
 }
@@ -141,6 +142,24 @@
 
 .recent-activity li:last-child {
     border-bottom: none;
+}
+
+.pagination-controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.pagination-controls button {
+    margin: 0 10px;
+    padding: 5px 10px;
+}
+
+.pagination-controls span {
+    font-weight: bold;
 }
 
 /* Fade-in animation */
