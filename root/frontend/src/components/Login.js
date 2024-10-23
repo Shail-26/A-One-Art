@@ -38,27 +38,39 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="card">
         <div className="register-container">
-          <h2>Login</h2>
-          <form onSubmit={handleSubmit} className="register-form">
-            <div className="form-group">
-              <label htmlFor="email">Email:</label>
-              <input type="email" id="email" name="email" value={credentials.email} onChange={onChange} required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password:</label>
-              <input type="password" id="password" name="password" value={credentials.password} onChange={onChange} required />
-            </div>
-            <button type="submit">Login</button>
-          </form>
-          <p className="already-p">
+          <form onSubmit={handleSubmit} className="registration-form">
+          <p className="title">Login</p>
+          <label>
+        <input
+          className="input"
+          type="email"
+          name="email"
+          value={credentials.email}
+          onChange={onChange}
+          placeholder=""
+          required
+        />
+        <span>Email</span>
+      </label>
+      <label>
+        <input
+          className="input"
+          type="password"
+          name="password"
+          value={credentials.password}
+          onChange={onChange}
+          placeholder=""
+          required
+        />
+        <span>Password</span>
+      </label>
+            <button type="submit" className="submit">Login</button>
+            <p className="signin">
             Don't have an account? <a href="/Register">&nbsp;Register</a>
           </p>
+          </form>
         </div>
-      </div>
-    </div>
   );
 };
 

@@ -1,140 +1,168 @@
-.container{
-  background-color: rgb(92, 88, 89);
-  margin: 0;
-  padding: 0;
-  height: 100vh;
+/* From Uiverse.io by ammarsaa */ 
+.registration-form {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  padding: 20px;
+  /* padding-right: 40px; */
+  border-radius: 20px;
+  position: relative;
+  background-color: white;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.registration-form .title {
+  font-size: 45px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
   align-items: center;
-  background-image: url('https://i.pinimg.com/564x/9a/77/5f/9a775fdb5cd7c5b5c900688fd116df02.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  padding-left: 30px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: #00bfff;
 }
 
-/* .register-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    padding-right: 35px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: rgb(224, 201, 215);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    color: black;
-  } */
-  
-  .register-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-
-  .register-container h2{
-    text-align: center;
-  }
-  
-  .form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-group input {
-    max-width: 400px;
-    width: 100%;
-    padding: 8px;
-    margin-top: 3px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgb(228, 214, 214);
-  }
-  
-  .register-container button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 330px;
-    margin-left: 20px;
-  }
-  
-  .register-container button:hover {
-    background-color: #0056b3;
-  }
-  
-
-  .card {
-    position: relative;
-    width: 450px;
-    height: 750px;
-    padding: 15px;
-    background: var(--leo-control-color, var(--base));
-    color: rgba(245, 245, 245, 0.741);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* font-size: 25px;
-    font-weight: bold; */
-    border-radius: 20px;
-    cursor: pointer;
-    border: solid;
-    border-color: aliceblue;
-    overflow: hidden;
-  }
-
-  .register-container{
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .card::before,
-  .card::after {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-    font-weight: bold;
-    background-color: rgb(225, 217, 217);
-    transition: all 0.5s;
-    border-radius: 25px 25px 25px 25px;
-  }
-  
-  .card::before {
-    top: 0;
-    right: 0;
-    border-radius: 0 17px 0 100%;
-    content: "";
-  }
-  
-  .card::after {
-    bottom: 0;
-    left: 0;
-    border-radius: 0 100%  0 17px;
-    color: black;
-    content: "";
-  }
-  
-  .card:hover::before,
-  .card:hover:after {
-    width: 16%;
-    height: 16%;
-    transition: all 0.5s;
-  } 
-  
-  /* .card:hover::after {
-    content: "Registration";
-  }   */
-  .already-p{
-    display: flex;
-    justify-content: center;
+.registration-form .title::before {
+  width: 20px;
+  height: 20px;
 }
+
+.registration-form .title::after {
+  width: 20px;
+  height: 20px;
+  animation: pulse 1s linear infinite;
+}
+
+.registration-form .title::before,
+.registration-form .title::after {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #00bfff;
+}
+
+
+.registration-form .message, 
+.registration-form .signin {
+  font-size: 17.0px;
+  color: black;
+}
+
+.registration-form .signin {
+  text-align: center;
+  margin-left: 50px;
+}
+
+.registration-form .signin a:hover {
+  text-decoration: underline royalblue;
+  color: #0a7396;
+}
+
+.registration-form .signin a {
+  color: #00bfff;
+}
+
+.registration-form .flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.registration-form label {
+  position: relative;
+}
+
+.registration-form label .input {
+  background-color: white;
+  color: black;
+  width: 400px;
+  padding: 20px 05px 08px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.registration-form label .input + span {
+  color: black;
+  position: absolute;
+  left: 10px;
+  top: 0px;
+  font-size: 1em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.registration-form label .input:placeholder-shown + span {
+  top: 12.5px;
+  font-size: 1em;
+}
+
+.registration-form label .input:focus + span,
+.registration-form label .input:valid + span {
+  color: #00bfff;
+  top: 0px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.registration-form .input {
+  font-size: medium;
+}
+
+.registration-form .submit {
+  border: none;
+  outline: none;
+  padding: 15px;
+  width: 415px;
+  padding-left: 60px;
+  padding-right: 60px;
+  /* margin-left: 60px; */
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: .3s ease;
+  background-color: #00bfff;
+}
+
+.registration-form .submit:hover {
+  background-color: #00bfff96;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Increased the gap between form elements */
+  width: 550px; /* Increased width for a bigger form */
+  padding: 30px; /* Increased padding for more internal space */
+  padding-right: 100px; /* Adjusted padding-right for better spacing */
+  border-radius: 25px; /* Slightly larger rounded corners */
+  background-color: white;
+  color: #fff;
+  border: 2px solid #00bfff;
+
+  /* Centering the form */
+  position: absolute; /* Makes the form responsive to page dimensions */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
