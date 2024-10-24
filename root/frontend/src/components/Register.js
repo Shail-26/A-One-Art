@@ -106,6 +106,7 @@ import '../assets/styles/forall.css';
 import '../assets/styles/Register.css';
 
 const Register = () => {
+  const host = "http://localhost:5000";
   const [credentials, setCredentials] = useState({
     name: '',
     email: '',
@@ -127,7 +128,7 @@ const Register = () => {
       alert("Passwords must match");
       return;
     }
-    const response = await fetch("http://localhost:5000/api/auth/createuser", {
+    const response = await fetch(`${host}/api/auth/createuser`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'

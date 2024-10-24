@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const host = "http://localhost:5000" ;
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
@@ -14,7 +15,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const response = await fetch(`${host}/api/auth/login`, {
         method:"POST",
         headers:{
             'Content-Type' : 'application/json'
@@ -40,35 +41,35 @@ const Login = () => {
   return (
         <div className="register-container">
           <form onSubmit={handleSubmit} className="registration-form">
-          <p className="title">Login</p>
-          <label>
-        <input
-          className="input"
-          type="email"
-          name="email"
-          value={credentials.email}
-          onChange={onChange}
-          placeholder=""
-          required
-        />
-        <span>Email</span>
-      </label>
-      <label>
-        <input
-          className="input"
-          type="password"
-          name="password"
-          value={credentials.password}
-          onChange={onChange}
-          placeholder=""
-          required
-        />
-        <span>Password</span>
-      </label>
+            <p className="title">Login</p>
+            <label>
+              <input
+                className="input"
+                type="email"
+                name="email"
+                value={credentials.email}
+                onChange={onChange}
+                placeholder=""
+                required
+              />
+              <span>Email</span>
+            </label>
+            <label>
+              <input
+                className="input"
+                type="password"
+                name="password"
+                value={credentials.password}
+                onChange={onChange}
+                placeholder=""
+                required
+              />
+              <span>Password</span>
+            </label>
             <button type="submit" className="submit">Login</button>
             <p className="signin">
-            Don't have an account? <a href="/Register">&nbsp;Register</a>
-          </p>
+              Don't have an account? <a href="/Register">&nbsp;Register</a>
+            </p>
           </form>
         </div>
   );
