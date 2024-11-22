@@ -8,6 +8,7 @@ const ContactUs = () => {
     const host = "http://localhost:5000";
     const [feedback, setFeedback] = useState('');
     const [loading, setLoading] = useState(false);
+    const [emailLoading, setEmailLoading] = useState(false);
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [pastFeedbacks, setPastFeedbacks] = useState([]);
@@ -109,6 +110,38 @@ const ContactUs = () => {
         }
     };
 
+    const handleContactSubmit = async (e) => {
+        e.preventDefault();
+        setEmailLoading(true);
+        
+        const email = e.target.email.value;
+        const message = e.target.message.value;
+    
+        try {
+            const response = await fetch(`${host}/send-email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token' : localStorage.getItem('auth-token')
+                },
+                body: JSON.stringify({ email, message }),
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.msg || 'Error sending email');
+            }
+    
+            alert('Thank you for contacting us. A confirmation email has been sent!');
+            e.target.reset();
+        } catch (err) {
+            console.error('Error sending email:', err.message);
+            alert('Failed to send email. Please try again later.');
+        } finally {
+            setEmailLoading(false);
+        }
+    };
+
     // Function to calculate days ago
     const calculateDaysAgo = (updatedAt) => {
         const now = new Date();
@@ -128,10 +161,16 @@ const ContactUs = () => {
             }}
         >
             <Navbar />
+            {emailLoading && (
+                <div className="loading-overlay">
+                    <div className="loading-spinner"></div>
+                    <p>Sending email...</p>
+                </div>
+            )}
             <div className="contact-feedback-container">
                 <div className="contact-section">
                     <h2>Contact</h2>
-                    <form className="contact-form">
+                    <form className="contact-form" onSubmit={handleContactSubmit}>
                         <div className="contact-form-group">
                             <label htmlFor="email">Email</label>
                             <input className='contact-input' type="email" id="email" name="email" required />
