@@ -28,7 +28,7 @@ function App() {
       <div className="App">
         <Routes>
           {/* Public routes */}
-          <Route path="/" element={<Register />} />
+          <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
@@ -37,9 +37,9 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/ourwork" element={<OurWork />} />
           <Route path="/products" element={<Products />} />
-          
+
           <Route path="/admin/*" element={<AdminRoutes />} />
-          
+
         </Routes>
       </div>
     </Router>
