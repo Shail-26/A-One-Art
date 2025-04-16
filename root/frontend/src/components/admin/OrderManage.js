@@ -10,9 +10,11 @@ const OrderManagement = () => {
     const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
     const [isAssignModalOpen, setAssignModalOpen] = useState(false);
     const [currentOrder, setCurrentOrder] = useState(null);
-    const [assignedPersons, setAssignedPersons] = useState({}); // Change to an object
+    const [assignedPersons, setAssignedPersons] = useState({});
+    const [currentPage, setCurrentPage] = useState(1);
+    const ordersPerPage = 10;
 
-    const dropdownRef = useRef(null); 
+    const dropdownRef = useRef(null);
 
     const toggleDropdown = (index) => {
         setOpenDropdownIndex(openDropdownIndex === index ? null : index);
@@ -29,16 +31,20 @@ const OrderManagement = () => {
     };
 
     const assignPerson = (person, orderId) => {
-        setAssignedPersons((prevPersons) => ({
-            ...prevPersons,
-            [orderId]: [...(prevPersons[orderId] || []), person] // Assign new person to the order
-        }));
+        setAssignedPersons((prevPersons) => {
+            const updatedPersons = {
+                ...prevPersons,
+                [orderId]: [...(prevPersons[orderId] || []), person],
+            };
+            console.log('Updated Assigned Persons:', updatedPersons);
+            return updatedPersons;
+        });
     };
 
     useEffect(() => {
         document.addEventListener('mousedown', (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setOpenDropdownIndex(null); 
+                setOpenDropdownIndex(null);
             }
         });
 
@@ -53,29 +59,26 @@ const OrderManagement = () => {
                 const response = await fetch(`${host}/fetchorder`, {
                     method: 'GET',
                     headers: {
-                        'auth-token': localStorage.getItem('auth-token')
-                    }
+                        'auth-token': localStorage.getItem('auth-token'),
+                    },
                 });
 
                 const data = await response.json();
 
                 if (response.ok) {
-                    setOrders(data); 
+                    setOrders(data);
                 } else {
                     throw new Error(data.message || 'Failed to fetch orders');
                 }
             } catch (err) {
-                setError(err.message); 
+                setError(err.message);
             } finally {
-                setLoading(false); 
+                setLoading(false);
             }
         };
 
-        fetchOrders();  
+        fetchOrders();
     }, []);
-
-    if (loading) return <div>Loading orders...</div>;
-    if (error) return <div>Error: {error}</div>;
 
     const getDropdownOptions = (status) => {
         switch (status.toLowerCase()) {
@@ -96,12 +99,12 @@ const OrderManagement = () => {
         const status = { status: option };
         try {
             const response = await fetch(`${host}/updateorder/${id}`, {
-                method: 'PUT', 
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'auth-token': localStorage.getItem('auth-token')
+                    'auth-token': localStorage.getItem('auth-token'),
                 },
-                body: JSON.stringify(status)
+                body: JSON.stringify(status),
             });
 
             if (!response.ok) {
@@ -109,15 +112,15 @@ const OrderManagement = () => {
             }
 
             const data = await response.json();
-            setOrders((prevOrders) => 
-                prevOrders.map((order) => 
+            setOrders((prevOrders) =>
+                prevOrders.map((order) =>
                     order._id === id ? { ...order, status: option } : order
                 )
             );
         } catch (error) {
-            console.error('There was an error fetching the products!', error);
+            console.error('There was an error updating the status!', error);
         }
-    }
+    };
 
     const formatDate = (dateRangeString) => {
         const [startDate, endDate] = dateRangeString.split(' to ');
@@ -125,6 +128,19 @@ const OrderManagement = () => {
         const cleanEndDate = endDate.split(', ').slice(1, 3).join(', ');
         return `${cleanStartDate} to ${cleanEndDate}`;
     };
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const totalPages = Math.ceil(orders.length / ordersPerPage);
+    const paginatedOrders = orders.slice(
+        (currentPage - 1) * ordersPerPage,
+        currentPage * ordersPerPage
+    );
+
+    if (loading) return <div>Loading orders...</div>;
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="order-management">
@@ -139,38 +155,52 @@ const OrderManagement = () => {
                             <th>Description</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th>Assign</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map((order, index) => (
+                        {paginatedOrders.map((order, index) => (
                             <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{order.name}</td>
-                                <td>{order.event}</td>
-                                <td>{order.mobile}</td>
-                                <td>{order.desc}</td>
-                                <td>{formatDate(order.event_date)}</td>
+                                <td onClick={() => openAssignModal(order)}>
+                                    {(currentPage - 1) * ordersPerPage + index + 1}
+                                </td>
+                                <td onClick={() => openAssignModal(order)}>
+                                    {order.name}
+                                </td>
+                                <td onClick={() => openAssignModal(order)}>
+                                    {order.event}
+                                </td>
+                                <td onClick={() => openAssignModal(order)}>
+                                    {order.mobile}
+                                </td>
+                                <td onClick={() => openAssignModal(order)}>
+                                    {order.desc}
+                                </td>
+                                <td onClick={() => openAssignModal(order)}>
+                                    {formatDate(order.event_date)}
+                                </td>
                                 <td>
-                                    <button 
-                                        onClick={(e) => { e.stopPropagation(); toggleDropdown(index); }} 
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            toggleDropdown(index);
+                                        }}
                                         className={order.status.toLowerCase()}
                                     >
                                         {order.status}
                                     </button>
                                     {openDropdownIndex === index && (
                                         <div ref={dropdownRef} className="dropdown-content">
-                                            {getDropdownOptions(order.status).map((option, idx) => (
-                                                <a key={idx} onClick={() => changeStatus(option, order._id)}>{option}</a>
-                                            ))}
+                                            {getDropdownOptions(order.status).map(
+                                                (option, idx) => (
+                                                    <a
+                                                        key={idx}
+                                                        onClick={() => changeStatus(option, order._id)}
+                                                    >
+                                                        {option}
+                                                    </a>
+                                                )
+                                            )}
                                         </div>
-                                    )}
-                                </td>
-                                <td onClick={() => openAssignModal(order)}>
-                                    {assignedPersons[order._id] && assignedPersons[order._id].length > 0 ? (
-                                        <span className="assigned-tick">✔</span>
-                                    ) : (
-                                        <span className="assigned-cross">✘</span>
                                     )}
                                 </td>
                             </tr>
@@ -179,9 +209,21 @@ const OrderManagement = () => {
                 </table>
             </div>
 
+            <div className="pagination">
+                {Array.from({ length: totalPages }, (_, index) => (
+                    <button
+                        key={index}
+                        className={currentPage === index + 1 ? 'active' : ''}
+                        onClick={() => handlePageChange(index + 1)}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
+            </div>
+
             {isAssignModalOpen && (
-                <AssignPersonModal 
-                    closeModal={closeAssignModal} 
+                <AssignPersonModal
+                    closeModal={closeAssignModal}
                     order={currentOrder}
                     assignPerson={assignPerson}
                     assignedPersons={assignedPersons}

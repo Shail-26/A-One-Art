@@ -5,10 +5,14 @@
     border : 2px solid rgba(115, 117, 130, 0.479);
     padding: 20px;    
     background-color: #f0f4ff76;
-    height: 100%;
+    max-height: 87vh;
     margin-left: 20px;
     width: 100%;
+    overflow: scroll;
     box-sizing: border-box;
+}
+.product-manage-main-content::-webkit-scrollbar {
+    display: none;
 }
 
 .add-btn-cont {

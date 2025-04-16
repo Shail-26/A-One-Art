@@ -3,8 +3,12 @@ import { NavLink } from 'react-router-dom';
 import '../assets/styles/Navbar.css';
 import '../assets/styles/forall.css';
 import logo from '../assets/images/Logo img.png';
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
+  let navigate=useNavigate();
+
   const [loggedin, setLoggedin] = useState(false);
 
   useEffect(() => {
@@ -19,6 +23,7 @@ const Navbar = () => {
     localStorage.removeItem('auth-token');
     localStorage.removeItem('admin');
     setLoggedin(false); // Set loggedin state to false to hide navigation links
+    navigate('/home'); 
   };
 
   return (

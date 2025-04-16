@@ -9,17 +9,17 @@ const OrderManagement = () => {
     const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [imageSrc, setImageSrc] = useState(null);
-    const [users, setUsers] = useState({}); // Object to store user details by ID
+    const [users, setUsers] = useState({});
+    const [currentPage, setCurrentPage] = useState(1); // Track the current page
+    const itemsPerPage = 9; // Number of items per page
 
     const dropdownRef = useRef(null);
 
-    // Function to open the modal with the selected image
     const handleImageClick = (imagePath) => {
         setImageSrc(`${host}/${imagePath}`);
         setIsModalOpen(true);
     };
 
-    // Function to close the modal
     const handleCloseModal = () => {
         setIsModalOpen(false);
         setImageSrc(null);
@@ -57,9 +57,8 @@ const OrderManagement = () => {
                 }
 
                 const data = await response.json();
-                setOrders(data); // Set orders fetched from API
+                setOrders(data);
 
-                // Fetch user details for each order
                 const userPromises = data.map(order =>
                     fetch(`${host}/api/admin/getuser/${order.user}`, {
                         method: 'GET',
@@ -70,8 +69,6 @@ const OrderManagement = () => {
                 );
 
                 const usersData = await Promise.all(userPromises);
-
-                // Store user details in an object keyed by user ID
                 const usersObj = usersData.reduce((acc, user) => {
                     acc[user._id] = user;
                     return acc;
@@ -135,6 +132,16 @@ const OrderManagement = () => {
         }
     };
 
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentOrders = orders.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(orders.length / itemsPerPage);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
         <div className="order-management">
             <div className="table-container">
@@ -151,11 +158,11 @@ const OrderManagement = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map((order, index) => (
+                        {currentOrders.map((order, index) => (
                             <tr key={order._id}>
-                                <td>{index + 1}</td>
-                                <td>{users[order.user] ? users[order.user].name : 'Loading...'}</td> {/* Display user name */}
-                                <td>{users[order.user] ? users[order.user].mobile : 'Loading...'}</td> {/* Display user mobile */}
+                                <td>{indexOfFirstItem + index + 1}</td>
+                                <td>{users[order.user] ? users[order.user].name : 'Loading...'}</td>
+                                <td>{users[order.user] ? users[order.user].mobile : 'Loading...'}</td>
                                 <td>{order.customName || 'N/A'}</td>
                                 <td>{order.customDescription || 'N/A'}</td>
                                 <td>
@@ -188,16 +195,26 @@ const OrderManagement = () => {
                             </tr>
                         ))}
                     </tbody>
-                    {/* Image Preview Modal */}
-                    {isModalOpen && (
-                        <div className="modal-overlay" onClick={handleCloseModal}>
-                            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                                <img src={imageSrc} alt="Custom Order Preview" className="preview-image" />
-                                <button className="close-modal-btn" onClick={handleCloseModal}>Close</button>
-                            </div>
-                        </div>
-                    )}
                 </table>
+                {isModalOpen && (
+                    <div className="modal-overlay" onClick={handleCloseModal}>
+                        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                            <img src={imageSrc} alt="Custom Order Preview" className="preview-image" />
+                            <button className="close-modal-btn" onClick={handleCloseModal}>Close</button>
+                        </div>
+                    </div>
+                )}
+            </div>
+            <div className="pagination">
+                {[...Array(totalPages)].map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={currentPage === index + 1 ? 'active' : ''}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
             </div>
         </div>
     );

@@ -112,6 +112,27 @@
     background-color: #f1f1f1;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+
 @media (max-width: 768px) {
     .table-container table {
         font-size: 14px;

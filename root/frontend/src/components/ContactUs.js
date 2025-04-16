@@ -214,9 +214,9 @@ const ContactUs = () => {
                     <div className="modal-content">
                         <span className="close" onClick={handleCloseModal}>&times;</span>
                         <h2>Your Past Feedbacks</h2>
-                        {pastFeedbacks.length > 0 ? (
+                        {pastFeedbacks && pastFeedbacks.length > 0 ? (
                             <ul>
-                                {pastFeedbacks.map(feedback => (
+                                {pastFeedbacks.map((feedback) => (
                                     <li key={feedback._id} onClick={() => setSelectedFeedback(feedback)}>
                                         {feedback.feedbackText} - 
                                         <span className="days-ago">
